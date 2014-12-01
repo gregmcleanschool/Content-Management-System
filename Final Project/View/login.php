@@ -25,7 +25,7 @@ if(!empty($_POST['userName']) && !empty($_POST['password']))
 }
 else
 {
-    $result = "Nothing to show!";
+    $result = "Nothing to do!";
 }
 ?>
 <h1><?php echo $result; ?></h1>
