@@ -27,7 +27,38 @@ class Sqli
 
 
 
-//get the SCC snippet from the database
+
+
+//updates CSS content settings
+    public function insertCssContent($name,$desc,$snippet,$createdBy){
+
+        $con = new Connect();
+        $db = $con->connect();
+
+
+
+        $query ="INSERT INTO CSSTemplate(CSSName,CSSDescription,active,CssSnippet,CreateDate,CreatedBy,LastModifyDate,LastModifyBy)
+                VALUES ('$name','$desc',false,'$snippet',NOW(),'$createdBy',NOW(),null);";
+
+        $this->result = mysqli_query($db,$query);
+
+        $ret="";
+
+        while($row = mysqli_fetch_row( $this->result))
+        {
+
+            $ret = $row[0];
+
+        }
+
+        $con->disconnect();
+
+        return  $ret;
+
+    }
+
+
+//get the CSS snippet from the database
     public function selectCSSContent($CSSId){
         $con = new Connect();
         $db = $con->connect();

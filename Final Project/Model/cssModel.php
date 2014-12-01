@@ -85,5 +85,10 @@ class cssModel{
     }
 
 
+    function addCssContent(){
+
+
+    }
+
 
 }

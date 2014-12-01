@@ -31,6 +31,11 @@ Class CSS
 
     }
 
+    public function addCssTemplate(){
+
+
+    }
+
 
 }
 
