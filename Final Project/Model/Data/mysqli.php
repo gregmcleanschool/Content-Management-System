@@ -5,7 +5,7 @@ class Sqli
 {
     private $result;
 
-#Assigns article to a content area
+#Assigns article to a content area, not yet implemented
     public function setArticleContentAreaID($articleId,$contentAreaId,$allPages){
 
         $con = new Connect();
@@ -27,7 +27,7 @@ class Sqli
 
 
 
-
+//get the SCC snippet from the database
     public function selectCSSContent($CSSId){
         $con = new Connect();
         $db = $con->connect();
@@ -50,6 +50,23 @@ class Sqli
         $con->disconnect();
 
         return  $ret;
+
+    }
+
+
+    public function selectallCSSInfo(){
+        $con = new Connect();
+        $db = $con->connect();
+
+        $query ="SELECT * FROM CSSTemplate";
+
+        $this->result = mysqli_query($db,$query);
+
+        if(!$this->result)
+        {
+            die($$this->result->error .
+                'Could not retrieve records from the CMS Database: ');
+        }
 
     }
 
@@ -173,6 +190,10 @@ class Sqli
         return $this->result->fetch_array();
     }
 
+
+
+
+
     public function fetchPages()
     {
         if(!$this->result)
@@ -183,10 +204,41 @@ class Sqli
 
    }
 
+    public function fetchCSSID($row)
+    {
+        return $row['CSSID'];
+    }
+
+    public function fetchCSSName($row)
+    {
+        return $row['CSSName'];
+    }
+
+    public function fetchCSSDescription($row)
+    {
+        return $row['CSSDescription'];
+    }
+
+    public function fetchCSSIsActive($row)
+    {
+        return $row['active'];
+    }
+
+    public function fetchCSSSnippet($row)
+    {
+        return $row['CssSnippet'];
+    }
+
+
+
+
+
     public function fetchArticleName($row)
     {
         return $row['ArticleName'];
     }
+
+
 
     public function fetchArticleContent($row)
     {

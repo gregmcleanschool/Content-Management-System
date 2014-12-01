@@ -38,10 +38,7 @@ public static function convertAliasToName($pageAlias){
 
         //  $myDataAccess = new Lite();
         $myDataAccess = new Sqli();
-
-
-
-            $myDataAccess->selectPages();
+        $myDataAccess->selectPages();
 
 
         while($row = $myDataAccess->fetchPages())

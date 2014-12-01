@@ -56,7 +56,7 @@ if ( isset( $_GET['page'] ) && !empty( $_GET['page'] ) )
 
 
 
-
+$cssController->retrieveAllCSSInfo();
 
 //$actorController->displayAction("");
 
