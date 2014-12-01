@@ -5,6 +5,28 @@ class Sqli
 {
     private $result;
 
+#Assigns article to a content area
+    public function setArticleContentAreaID($articleId,$contentAreaId,$allPages){
+
+        $con = new Connect();
+        $db = $con->connect();
+
+        $query ="Update Articles
+                  SET ContentAreaID = '$contentAreaId'
+                  ,allPages = '$allPages'
+                  WHERE ArticleID = '$articleId'";
+
+        $this->result = mysqli_query($db,$query);
+
+
+        $con->disconnect();
+
+        return $this->result;
+
+    }
+
+
+
 
     public function selectCSSContent($CSSId){
         $con = new Connect();
@@ -104,11 +126,15 @@ class Sqli
         $con = new Connect();
         $db = $con->connect();
 
-        $query ="SELECT *
-                FROM ContentArea
-                LEFT JOIN Articles
-                ON ContentArea.ContentAreaID=Articles.ContentAreaID
-                WHERE Articles.PagesID ='$pageID'";
+//        $query ="SELECT *
+//                FROM ContentArea
+//                LEFT JOIN Articles
+//                ON ContentArea.ContentAreaID=Articles.ContentAreaID
+//                WHERE Articles.PagesID ='$pageID'";
+
+
+        $query = "SELECT *  FROM ContentArea";
+
 
         $this->result = mysqli_query($db,$query);
 
@@ -124,7 +150,8 @@ class Sqli
         $con = new Connect();
         $db = $con->connect();
 
-        $query ="SELECT * FROM Articles WHERE PagesID ='$pageID'";
+        $query ="SELECT * FROM Articles WHERE PagesID ='$pageID' OR
+        allPages = true";
 
         $this->result = mysqli_query($db,$query);
 

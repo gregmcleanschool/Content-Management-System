@@ -68,6 +68,11 @@ class contentAreaModel{
             $arrayOfContentObjects[] = $currentPage;
         }
 
+
+
+
+
+
 //        $myDataAccess->closeDB();
 
         $errors = array_filter($arrayOfContentObjects);

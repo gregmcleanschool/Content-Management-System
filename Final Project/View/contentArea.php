@@ -1,5 +1,6 @@
 <?php
 echo "<section>";
+
 foreach ($areaArray as $area)
 {
 // all of our content areas are DIVs
@@ -15,7 +16,7 @@ foreach ($areaArray as $area)
 
 
         $name = $article->getarticleName();
-        $articleContentID = $article->getarticleContentID();
+        $articleContentID = $article->getarticleContentID(); //
         $content = $article->getarticleContent();
 
         if($articleContentID == $contentID)
