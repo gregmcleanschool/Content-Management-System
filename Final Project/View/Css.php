@@ -5,7 +5,7 @@
 
 
 
-Select a CSS snippet
+Select a CSS snippet add or update
 <form action="" method=post>
 <select name="formCSS">
 <option value="">Select...</option>
@@ -21,6 +21,34 @@ endforeach;?>
 
 <?php
 
+
+$cssController = new CSS();
+
+if(isset($_POST['btnDelete']))
+{
+
+
+
+    $id = $_POST['hiddenId'];
+
+    $result = $cssController->deleteCssTemplate($id);
+
+    echo $result;
+
+
+}
+
+if(isset($_POST['newName']))
+{
+    $createdBy = 1;
+    $snippet = $_POST['newSnippet'];
+    $name = $_POST['newName'];
+    $desc = $_POST['newDescription'];
+
+    $result =  $cssController->addCssTemplate($name,$desc,$snippet,$createdBy);
+
+}
+
 if(isset($_POST['formCSS']) )
 {
  $selectedID = $_POST['formCSS'];
@@ -28,10 +56,35 @@ if(isset($_POST['formCSS']) )
 
     if($selectedID == "N"){
         //CODE FOR NEW CSS
+        ?>
+
+
+        <form action="" method=post>
+            Template Name: <input type="text" name="newName"></p>
+            Template Description:
+
+            <textarea rows="4" cols="50" name="newDescription"></textarea>
+
+            </p>
+
+            CSS Snippet:
+
+            <textarea rows="4" cols="50" name="newSnippet"></textarea>
+
+
+
+
+            </p>
+
+            <input type=submit value="Create">
+        </form>
+
+
+        <?php
     }
     else
     {
-        //CODE FOR UPDATE CSS
+        //CODE FOR UPDATE CSS FORM
         foreach($allCssInfo as $Css):
           if($selectedID == $Css->getCSSID())
           {
@@ -64,7 +117,9 @@ if(isset($_POST['formCSS']) )
 
               </p>
 
-              <input type=submit value="Update">
+              <input type=submit value="Update" name ="btnUpdate">
+                <input type=submit value="Delete" name ="btnDelete">
+              <input type ='hidden' value=<?php echo  $selectedID?> name='hiddenId'>
               </form>
 
               <?php
@@ -76,19 +131,31 @@ if(isset($_POST['formCSS']) )
 }
 
 
-if(isset($_POST['name']))
+if(isset($_POST['btnUpdate']))
 {
+    //VALUE OF CURRENT USER GOES HERE
+    $updatedBy = 1;
+
+
+    $id = $_POST['hiddenId'];
     $snippet = $_POST['snippet'];
     $name = $_POST['name'];
     $desc = $_POST['description'];
 
     echo $snippet .  $name .  $desc;
 
+
+
+    $result =  $cssController->updateCssTemplate($name,$desc,$snippet,$updatedBy,$id);
+
+    ECHO "Update Successful";
 }
 
 
-?>
 
+
+
+?>
 
 
 

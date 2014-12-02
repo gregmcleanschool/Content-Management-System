@@ -41,7 +41,7 @@ $contentAreaController = new ContentArea();
 
 $cssController->retrieveCSSTemplate($cssTemplate);
 
-$pageController->displayAction();
+//$pageController->displayAction();
 
 
 

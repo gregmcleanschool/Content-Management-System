@@ -31,8 +31,29 @@ Class CSS
 
     }
 
-    public function addCssTemplate(){
+    public function addCssTemplate($name,$desc,$snippet,$createdBy){
 
+         $insertReturn = $this->model->addCssContent($name,$desc,$snippet,$createdBy);
+
+        return $insertReturn;
+
+    }
+
+   public function updateCssTemplate($name,$desc,$snippet,$updatedBy,$id)
+   {
+
+       $updateReturn = $this->model->updateCssContent($name,$desc,$snippet,$updatedBy,$id);
+
+       return $updateReturn;
+
+   }
+
+
+    public function deleteCssTemplate($id)
+    {
+        $deleteReturn = $this->model->deleteCssContent($id);
+
+        return $deleteReturn;
 
     }
 

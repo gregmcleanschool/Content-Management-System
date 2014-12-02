@@ -25,11 +25,35 @@ class Sqli
 
     }
 
+//update CSS content
+    public function updateCssContent($name,$desc,$snippet,$updatedBy,$id){
+
+        $con = new Connect();
+        $db = $con->connect();
 
 
 
+        $query ="UPDATE CSSTemplate
+                SET CssName = '$name'
+                ,CssSnippet = '$snippet'
+                ,CSSDescription = '$desc'
+                ,LastModifyBy = '$updatedBy'
+                Where CSSID ='$id';";
 
-//updates CSS content settings
+        $this->result = mysqli_query($db,$query);
+
+        $ret="";
+
+
+        $con->disconnect();
+
+        return  $ret;
+
+    }
+
+
+
+//insert CSS content settings
     public function insertCssContent($name,$desc,$snippet,$createdBy){
 
         $con = new Connect();
@@ -44,18 +68,50 @@ class Sqli
 
         $ret="";
 
-        while($row = mysqli_fetch_row( $this->result))
-        {
-
-            $ret = $row[0];
-
-        }
+//        while($row = mysqli_fetch_row( $this->result))
+//        {
+//
+//            $ret = $row[0];
+//
+//        }
 
         $con->disconnect();
 
         return  $ret;
 
     }
+
+
+ public function deleteCSS($CSSId)
+ {
+
+     $con = new Connect();
+     $db = $con->connect();
+
+
+
+     $query ="delete from CSSTemplate Where CSSID = '$CSSId';";
+
+     $this->result = mysqli_query($db,$query);
+
+     $ret="";
+
+//     while($row = mysqli_fetch_row( $this->result))
+//     {
+//
+//         $ret = $row[0];
+//
+//     }
+
+     $con->disconnect();
+
+     return  $this->result;
+
+
+ }
+
+
+
 
 
 //get the CSS snippet from the database

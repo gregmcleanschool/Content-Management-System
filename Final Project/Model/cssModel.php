@@ -85,8 +85,31 @@ class cssModel{
     }
 
 
-    function addCssContent(){
+    function addCssContent($name,$desc,$snippet,$createdBy){
+        $dataAccess = new Sqli();
 
+        $result = $dataAccess->insertCssContent($name,$desc,$snippet,$createdBy);
+
+        return $result;
+
+    }
+
+
+    function updateCssContent($name,$desc,$snippet,$updatedBy,$id){
+        $dataAccess = new Sqli();
+        $result = $dataAccess->updateCssContent($name,$desc,$snippet,$updatedBy,$id);
+
+        return $result;
+
+
+    }
+
+    function deleteCssContent($id)
+    {
+        $dataAccess = new Sqli();
+        $result = $dataAccess->deleteCSS($id);
+
+        return $result;
 
     }
 
