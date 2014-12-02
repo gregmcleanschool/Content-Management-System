@@ -15,9 +15,17 @@ class userModel
     private $lastmodifyDate;
     private $lastModifyBy;
 
+    public function getUserID()
+    {
+        return ($this->UserID);
+    }
     public function getUserName()
     {
         return ($this->UserName);
+    }
+    public function getPasswordSalt()
+    {
+        return ($this->passwordSalt);
     }
 
     public static function retrieveUserContent()
@@ -29,7 +37,9 @@ class userModel
         while($row = $myDataAccess->fetchPages())
         {
             $currentUser = new self();
+            $currentUser->UserID = $myDataAccess->fetchUserID($row);
             $currentUser->UserName = $myDataAccess->fetchUserName($row);
+            $currentUser->passwordSalt = $myDataAccess->fetchPasswordSalt($row);
 
             $arrayOfUserObjects[] = $currentUser;
         }

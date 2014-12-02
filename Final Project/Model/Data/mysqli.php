@@ -191,6 +191,14 @@ class Sqli
     {
         return $row['UserName'];
     }
+    public function fetchUserID($row)
+    {
+        return $row['UserID'];
+    }
+    public function fetchPasswordSalt($row)
+    {
+        return $row['passwordSalt'];
+    }
 
     public function selectContentArea($pageID){
         $con = new Connect();
