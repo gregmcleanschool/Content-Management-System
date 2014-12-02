@@ -60,7 +60,10 @@ $cssController->retrieveAllCSSInfo();
 
 //$actorController->displayAction("");
 
-
+//require_once("../Controller/userController.php");
+//$userTest = new user();
+//$userArray = $userTest->retrieveUserInfo();
+//echo "";
 
 
 ?>

@@ -170,6 +170,28 @@ class Sqli
 
     }
 
+    public function selectUser(){
+
+        $con = new Connect();
+        $db = $con->connect();
+
+        $query ="SELECT * FROM User";
+
+        $this->result = mysqli_query($db,$query);
+
+        if(!$this->result)
+        {
+            die($$this->result->error .
+                'Could not retrieve records from the CMS Database: ');
+        }
+
+    }
+
+    public function fetchUserName($row)
+    {
+        return $row['UserName'];
+    }
+
     public function selectContentArea($pageID){
         $con = new Connect();
         $db = $con->connect();
