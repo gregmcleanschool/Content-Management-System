@@ -1,5 +1,5 @@
 
-<!--Fedi Inserting the hashing -->
+<!--Fedi Inserting the salting and hashing -->
 
 
 <?php
