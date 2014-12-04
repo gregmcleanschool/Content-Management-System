@@ -1,7 +1,7 @@
 
 
 <?php
-
+//comment from fedi
 //USE TINYMCE FOR TEXT AREA
 
 $cssTemplate = 1;
