@@ -16,7 +16,7 @@ Select a CSS snippet add or update
 endforeach;?>
 <option value="N">Create New</option>
 </select>
-<input type=submit value="Submit">
+<input type=submit value="Submit" name="submit">
 </form>
 
 <?php
@@ -49,7 +49,7 @@ if(isset($_POST['newName']))
 
 }
 
-if(isset($_POST['formCSS']) )
+if(isset($_POST['submit']) )
 {
  $selectedID = $_POST['formCSS'];
 
@@ -70,9 +70,6 @@ if(isset($_POST['formCSS']) )
             CSS Snippet:
 
             <textarea rows="4" cols="50" name="newSnippet"></textarea>
-
-
-
 
             </p>
 
@@ -152,34 +149,68 @@ if(isset($_POST['btnUpdate']))
 }
 
 
+if(isset($_POST['applyCSS']))
+{
+    //WHEN A CSS TEPLATE IS SELECTED TO BE APPLIED
+
+    $selectedID = $_POST['formCSSSET'];
+
+
+
+//set all the  templates to inactive
+
+    foreach($allCssInfo as $Css){
+$cssController->updateCssActive(0,$Css->getCSSID());
+}
+
+    //activeate the selected template
+
+    $cssController->updateCssActive(1,$selectedID);
+
+    echo "Layout Applied";
+}
+
 
 
 
 ?>
 
+</p>
 
-
-    <table border="1" style="width:50%">
-        <tr>
-            <td>ID</td>
-            <td>name</td>
-            <td>desc</td>
-            <td>active?</td>
-            <td>snippet</td>
-        </tr>
-        <tr>
-            <?php
-
-
-            foreach($allCssInfo as $Css):
+Select the CSS snippet to apply
+<form action="" method=post>
+    <select name="formCSSSET">
+        <option value="">Select...</option>
+        <?php foreach($allCssInfo as $Css):
             ?>
-            <td><?php echo $Css->getCSSID() ?></td>
-            <td><?php echo $Css->getCSSName(); ?></td>
-            <td><?php echo $Css->getCSSDescription(); ?></td>
-            <td><?php echo $Css->getCSSIsActive(); ?></td>
-            <td><?php echo $Css->getCSSSnippet(); ?></td>
-        </tr>
+            <option value=<?php echo $Css->getCSSID() ?>><?php echo $Css->getCSSName(); ?></option>
+        <?php
+        endforeach;?>
+    </select>
+    <input type=submit value="Use" name ="applyCSS">
+</form>
+
+<!--    <table border="1" style="width:50%">-->
+<!--        <tr>-->
+<!--            <td>ID</td>-->
+<!--            <td>name</td>-->
+<!--            <td>desc</td>-->
+<!--            <td>active?</td>-->
+<!--            <td>snippet</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            --><?php
+//
+//
+//            foreach($allCssInfo as $Css):
+//            ?>
+<!--            <td>--><?php //echo $Css->getCSSID() ?><!--</td>-->
+<!--            <td>--><?php //echo $Css->getCSSName(); ?><!--</td>-->
+<!--            <td>--><?php //echo $Css->getCSSDescription(); ?><!--</td>-->
+<!--            <td>--><?php //echo $Css->getCSSIsActive(); ?><!--</td>-->
+<!--            <td>--><?php //echo $Css->getCSSSnippet(); ?><!--</td>-->
+<!--        </tr>-->
 <?php
-endforeach;
+//endforeach;
 
 ?>

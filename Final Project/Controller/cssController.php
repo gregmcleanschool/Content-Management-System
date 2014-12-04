@@ -48,6 +48,13 @@ Class CSS
 
    }
 
+    public function updateCssActive($active,$id)
+    {
+        $updateReturn = $this->model->updateCssActive($active,$id);
+
+        return $updateReturn;
+    }
+
 
     public function deleteCssTemplate($id)
     {

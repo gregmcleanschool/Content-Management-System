@@ -104,6 +104,16 @@ class cssModel{
 
     }
 
+
+    function updateCssActive($active,$id)
+    {
+        $dataAccess = new Sqli();
+        $result = $dataAccess->updateCSSActive($active,$id);
+
+        return $result;
+
+    }
+
     function deleteCssContent($id)
     {
         $dataAccess = new Sqli();

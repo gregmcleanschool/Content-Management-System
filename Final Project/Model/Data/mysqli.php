@@ -25,6 +25,31 @@ class Sqli
 
     }
 
+    //Update just the active bool on CSS content
+    public function updateCSSActive($active,$id){
+
+        $con = new Connect();
+        $db = $con->connect();
+
+
+
+        $query ="UPDATE CSSTemplate
+                SET active = '$active'
+                Where CSSID ='$id';";
+
+        $this->result = mysqli_query($db,$query);
+
+        $ret="";
+
+
+        $con->disconnect();
+
+        return  $ret;
+
+
+    }
+
+
 //update CSS content
     public function updateCssContent($name,$desc,$snippet,$updatedBy,$id){
 
