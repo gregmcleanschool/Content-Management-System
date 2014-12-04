@@ -47,6 +47,59 @@ class userModel
         return $arrayOfUserObjects;
     }
 
+    //****************REGISTER A USER
+    public function register($checkUsername,$checkPassword)
+    {
+        $myPassword = $checkPassword;
+        $myUsername = $checkUsername;
+
+        //strip slashes are taking away the slashes, quotes, etc anything that is not a registered character
+        $myUsername = stripslashes($myUsername);
+        $myPassword = stripslashes($myPassword);
+        $myUsername = mysql_real_escape_string($myUsername);
+        $myPassword = mysql_real_escape_string($myPassword);
+
+        //create a random salt
+        $length = 60; //length of salt
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; //characters allowed in salt
+        $randomString = ''; //salt will be random
+        for ($i = 0; $i < $length; $i++) //goes through the array of characters
+        {
+            $randomString .= $characters[rand(0, strlen($characters) - 1)]; //wants the whole array of characters from 0 to end and -1
+        }
+        $salt = $randomString; //the salt will be a random string
+
+        for($x=0;$x<3001;$x++)
+        {
+            $myPassword = hash('sha512',$myPassword.$salt);
+            //$myPassword = hash('sha512',$myPassword.$myUsername);
+        }
+    }
+
+
+
+//***************CHECKS THE PASSWORD ON THE USER NAME ON LOGIN
+    public function checkLogin($checkUsername,$checkPassword, $salt)
+    {
+        $myPassword = $checkPassword;
+        $myUsername = $checkUsername;
+
+        $myUsername = stripslashes($myUsername);
+        $myPassword = stripslashes($myPassword);
+        $myUsername = mysql_real_escape_string($myUsername);
+        $myPassword = mysql_real_escape_string($myPassword);
+
+        //have to pull out the correct salt
+
+        for($x=0;$x<3001;$x++)
+        {
+            $myPassword = hash('sha512',$myPassword.$salt);
+            //$myPassword = hash('sha512',$myPassword.$myUsername);
+        }
+
+    }
+
+
 
 }
 
