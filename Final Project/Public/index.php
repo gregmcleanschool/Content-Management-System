@@ -61,9 +61,10 @@ if ( isset( $_GET['page'] ) && !empty( $_GET['page'] ) )
 //$cssController->retrieveAllCSSInfo();
 
 //DISPLAYS THE CONTENT AREA EDIT PAGE
-$contentAreaController->displayContentAreaEditPage(1);
+//$contentAreaController->displayContentAreaEditPage(1);
 
-//$actorController->displayAction("");
+//DISAPLAYS THE ARTICLE EDIT PAGE
+$contentAreaController->displayArticleEditPage();
 
 //require_once("../Controller/userController.php");
 //$userTest = new user();

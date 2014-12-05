@@ -5,16 +5,23 @@ class Sqli
 {
     private $result;
 
-#Assigns article to a content area, not yet implemented
-    public function setArticleContentAreaID($articleId,$contentAreaId,$allPages){
+#UPDATES ARETICLE
+    public function updateArticle($articleId,$contentAreaId,$allPages,$name,$title,$desc,$pageID,$modifiedBy,$content){
 
         $con = new Connect();
         $db = $con->connect();
 
-        $query ="Update Articles
-                  SET ContentAreaID = '$contentAreaId'
-                  ,allPages = '$allPages'
-                  WHERE ArticleID = '$articleId'";
+        $query ="UPDATE Articles
+                    SET ArticleName = '$name'
+                    ,ArticleTitle = '$title'
+                    ,ArticleDescription = '$desc'
+                    ,Content = '$content'
+                    ,PagesID = '$pageID'
+                    ,ContentAreaID = '$contentAreaId'
+                    ,allPages = '$allPages'
+                    ,LastModifyDate = NOW()
+                    ,LastModifyBy = '$modifiedBy'
+                    WHERE ArticleID = '$articleId'; ";
 
         $this->result = mysqli_query($db,$query);
 
@@ -24,6 +31,33 @@ class Sqli
         return $this->result;
 
     }
+
+
+
+    //INSERT A NEW ARTICLES
+    public function insertArticle($name,$title,$desc,$content,$CreatedBy,$pageId,$CAID,$allPages,$LastModifyBy)
+    {
+
+        $con = new Connect();
+        $db = $con->connect();
+
+
+        $query="     INSERT INTO Articles(ArticleName,ArticleTitle,ArticleDescription,Content,CreateDate,CreatedBy,PagesID,ContentAreaID,allPages,LastModifyDate,LastModifyBy)
+VALUES ('$name','$title','$desc','$content',NOW(),'$CreatedBy','$pageId','$CAID','$allPages',NOW(),'$LastModifyBy')";
+
+
+        $this->result = mysqli_query($db,$query);
+
+
+        $con->disconnect();
+
+        return $this->result;
+
+
+    }
+
+
+
 
     //Update just the active bool on CSS content
     public function updateCSSActive($active,$id){
@@ -398,6 +432,28 @@ class Sqli
                 'Could not retrieve records from the CMS Database: ');
         }
 
+        $con->disconnect();
+
+    }
+
+
+    public function selectAllArticles(){
+
+        $con = new Connect();
+        $db = $con->connect();
+
+        $query ="SELECT * FROM Articles";
+
+        $this->result = mysqli_query($db,$query);
+
+        if(!$this->result)
+        {
+            die($$this->result->error .
+                'Could not retrieve records from the CMS Database: ');
+        }
+
+        $con->disconnect();
+
     }
 
 
@@ -458,6 +514,59 @@ class Sqli
         return $row['ArticleName'];
     }
 
+//content id
+//name
+//content
+
+    public function lastModifyBy($row)
+    {
+        return $row['LastModifyBy'];
+    }
+
+    public function fetchArticleLastModifyDate($row)
+    {
+        return $row['LastModifyDate'];
+    }
+
+    public function fetchArticleAllPages($row)
+    {
+
+        return $row['allPages'];
+
+    }
+
+    public function fetchArticlePageID($row)
+    {
+        return $row['PagesID'];
+    }
+
+    public function fetchArticleCreatedBy($row)
+    {
+        return $row['CreatedBy'];
+    }
+
+    public function fetchArticleCreateDate($row)
+    {
+        return $row['CreateDate'];
+
+    }
+
+    public function fetchArticleID($row)
+    {
+        return $row['ArticleID'];
+    }
+
+
+    public function fetchArticleTitle($row)
+    {
+        return $row['ArticleTitle'];
+
+    }
+
+    public function fetchArticleDescription($row)
+    {
+        return $row['ArticleDescription'];
+    }
 
 
     public function fetchArticleContent($row)
@@ -505,7 +614,10 @@ class Sqli
         return $row['PageName'];
     }
 
-
+    public function fetchPageID($row)
+    {
+        return $row['PagesID'];
+    }
 
 
 

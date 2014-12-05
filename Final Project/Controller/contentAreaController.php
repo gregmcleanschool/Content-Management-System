@@ -29,7 +29,25 @@ Class ContentArea{
     }
 
 
-    //DISPLAYS THE EDIT PAGE
+    //DISPLAYS THE EDIT PAGE FOR ALL ARTICLES
+    public function displayArticleEditPage(){
+
+        $articleArray = $this->model->retrieveAllArticleContent();
+        $areaArray = $this->model->retrievePageContent(1);
+
+        include '../View/articleEdit.php';
+    }
+
+
+    public function insertArticle($name,$title,$desc,$content,$CreatedBy,$pageId,$CAID,$allPages,$LastModifyBy)
+    {
+
+        $this->model->insertArticle($name,$title,$desc,$content,$CreatedBy,$pageId,$CAID,$allPages,$LastModifyBy);
+
+
+    }
+
+    //DISPLAYS THE EDIT PAGE FOR CONTENT AREA
     public function displayContentAreaEditPage($pageID){
 
 
@@ -59,6 +77,12 @@ Class ContentArea{
 
     }
 
+    //UPDATES ARTICLE
+    public function updateArticle($articleId,$contentAreaId,$allPages,$name,$title,$desc,$pageID,$modifiedBy,$content)
+    {
+        $this->model->updateArticle($articleId,$contentAreaId,$allPages,$name,$title,$desc,$pageID,$modifiedBy,$content);
+
+    }
 
     public function deleteContentArea($id)
     {

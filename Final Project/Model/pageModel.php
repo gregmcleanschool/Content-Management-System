@@ -11,7 +11,12 @@ class pageModel{
 
 private $pageAlias;
 private $pageName;
+private $pageID;
 
+    public function getPageID()
+    {
+        return ($this->pageID);
+    }
 
     public function getAlias()
     {
@@ -49,6 +54,7 @@ public static function convertAliasToName($pageAlias){
             $currentPage = new self();
             $currentPage ->pageAlias = $myDataAccess->fetchPageAlias($row);
             $currentPage ->pageName = $myDataAccess->fetchPageName($row);
+            $currentPage->pageID = $myDataAccess->fetchPageID($row);
 
             $arrayOfPageObjects[] = $currentPage;
         }

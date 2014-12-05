@@ -40,17 +40,6 @@ foreach ($areaArray as $area)
 }
 echo "</section>";
 
-//foreach ( $articleArray as $article)
-//{
-//// all of our content areas are DIVs
-//    $name = $article->getarticleName();
-//    $articleContentID = $article->getarticleContentID();
-//    $content = $article->getarticleContent();
-//
-//    echo   $name . '<br>';
-//    echo   $articleContentID . '<br>';
-//    echo   $content . '<br>';
-//
-//}
+
 
 ?>

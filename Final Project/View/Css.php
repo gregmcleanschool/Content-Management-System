@@ -37,6 +37,7 @@ if(isset($_POST['btnDelete']))
 
 if(isset($_POST['newName']))
 {
+    //USER INFRO GOES HERE
     $createdBy = 1;
     $snippet = $_POST['newSnippet'];
     $name = $_POST['newName'];
