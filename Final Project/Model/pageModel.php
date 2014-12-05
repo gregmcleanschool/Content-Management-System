@@ -12,6 +12,7 @@ class pageModel{
 private $pageAlias;
 private $pageName;
 private $pageID;
+private $pageDescription;
 
     public function getPageID()
     {
@@ -28,15 +29,34 @@ private $pageID;
         return ($this->pageName);
     }
 
-public static function convertAliasToName($pageAlias){
-    $myDataAccess = new Sqli();
+    public function getPageDescription(){
 
-  $result =    $myDataAccess->aliasPageTitleConvert($pageAlias);
-
-    return $result;
+        return ($this->pageDescription);
+    }
 
 
-}
+    public static function convertAliasToName($pageAlias){
+        $myDataAccess = new Sqli();
+
+      $result =    $myDataAccess->aliasPageTitleConvert($pageAlias);
+
+        return $result;
+
+
+    }
+
+
+        public function updatePage($id,$name,$alias,$desc,$lastModifyBy)
+        {
+            $myDataAccess = new Sqli();
+
+            $result =    $myDataAccess->updatePage($id,$name,$alias,$desc,$lastModifyBy);
+
+            return $result;
+
+
+        }
+
 
     public static function retrieveAllPages()
     {
@@ -55,6 +75,7 @@ public static function convertAliasToName($pageAlias){
             $currentPage ->pageAlias = $myDataAccess->fetchPageAlias($row);
             $currentPage ->pageName = $myDataAccess->fetchPageName($row);
             $currentPage->pageID = $myDataAccess->fetchPageID($row);
+            $currentPage->pageDescription = $myDataAccess->fetchPageDescription($row);
 
             $arrayOfPageObjects[] = $currentPage;
         }
@@ -69,13 +90,28 @@ public static function convertAliasToName($pageAlias){
         }
 
 
+    }
 
+
+    public function insertPage($name,$alias,$desc,$createdBy)
+    {
+        $myDataAccess = new Sqli();
+
+        $result = $myDataAccess->insertPage($name,$alias,$desc,$createdBy);
+
+        return $result;
 
     }
 
 
+    public function deletePage($id){
+        $myDataAccess = new Sqli();
 
+        $result = $myDataAccess->deletePage($id);
 
+        return $result;
+
+    }
 
 
 }

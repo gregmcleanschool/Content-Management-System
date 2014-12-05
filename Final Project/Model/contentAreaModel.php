@@ -175,17 +175,29 @@ public function updateArticle($articleId,$contentAreaId,$allPages,$name,$title,$
 
 }
 
-public function insertArticle($name,$title,$desc,$content,$CreatedBy,$pageId,$CAID,$allPages,$LastModifyBy)
-{
+    public function insertArticle($name,$title,$desc,$content,$CreatedBy,$pageId,$CAID,$allPages,$LastModifyBy)
+    {
 
-    $myDataAccess = new Sqli();
+        $myDataAccess = new Sqli();
 
-    $result = $myDataAccess->insertArticle($name,$title,$desc,$content,$CreatedBy,$pageId,$CAID,$allPages,$LastModifyBy);
+        $result = $myDataAccess->insertArticle($name,$title,$desc,$content,$CreatedBy,$pageId,$CAID,$allPages,$LastModifyBy);
 
-    return $result;
+        return $result;
 
 
-}
+    }
+
+
+    public function deleteArticle($id)
+    {
+        $myDataAccess = new Sqli();
+
+        $result = $myDataAccess->deleteArticle($id);
+
+        return $result;
+
+    }
+
 
     public function addContentArea($name,$desc,$order,$createdBy,$alias)
     {

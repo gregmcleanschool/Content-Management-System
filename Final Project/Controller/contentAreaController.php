@@ -29,6 +29,17 @@ Class ContentArea{
     }
 
 
+
+    public function deleteArticle($id)
+    {
+
+        $this->model->deleteArticle($id);
+
+    }
+
+
+
+
     //DISPLAYS THE EDIT PAGE FOR ALL ARTICLES
     public function displayArticleEditPage(){
 

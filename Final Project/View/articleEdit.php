@@ -5,6 +5,26 @@
 require_once('../Controller/pageController.php');
 $pageController = new Page;
 
+
+
+
+
+
+
+
+//WHEN DELETE IS PRESSED
+if(isset($_POST['btnDelete']))
+{
+    $id = $_POST['hiddenId'];
+
+    $this->model->deleteArticle($id);
+
+    echo "Delete Successful";
+
+}
+
+
+
 //WHEN UPDATE IS PRESSED
 if(isset($_POST['btnUpdate']))
 {
@@ -55,7 +75,7 @@ if(isset($_POST['btnNew']))
 
 
     //IF ALL PAGES IS SELECTED
-    if($associatedPage == "P")
+    if($pageId == "P")
     {
         $allPages =1;
         $pageId=1;
@@ -115,7 +135,7 @@ if(isset($_POST['selectArticle']))
 
                     ?>
 
-                        <select name="formPageSelect">
+                        <select name="formPageNewSelect">
                             <option value="">Select...</option>
                             <?php  foreach ($pageObjects as $page):
                                 ?>
@@ -129,7 +149,7 @@ if(isset($_POST['selectArticle']))
 
                 Associated Content Area
 
-                    <select name="formCASelect">
+                    <select name="formNewCASelect">
                         <option value="">Select...</option>
                         <?php foreach($areaArray as $area):
                             ?>
@@ -150,7 +170,7 @@ if(isset($_POST['selectArticle']))
 
         }
 
-    }
+
     else
     {
 
@@ -235,7 +255,7 @@ if(isset($_POST['selectArticle']))
 
     }
 
-
+}
 
 
 

@@ -27,9 +27,33 @@ Class Page{
     }
 
 
+    public function insertPage($name,$alias,$desc,$createdBy)
+    {
+
+       $this->model->insertPage($name,$alias,$desc,$createdBy);
+
+    }
 
 
+    public function displayEditPage(){
 
+        $pageArray = $this->model->retrieveAllPages();
+
+        include '../View/pageEdit.php';
+
+    }
+
+
+    public function updatePage($id,$name,$alias,$desc,$lastModifyBy){
+
+        $this->model->updatePage($id,$name,$alias,$desc,$lastModifyBy);
+    }
+
+    public function deletePage($id){
+
+        $this->model->deletePage($id);
+
+    }
 
 }
 

@@ -43,10 +43,10 @@ $contentAreaController = new ContentArea();
 $cssController->retrieveCSSTemplate($cssTemplate);
 
 //DISPLAYS THE PAGE NAVIGATION LINKS
-//$pageController->displayAction();
+$pageController->displayAction();
 
 
-
+//GETS THE SELETECTED PAGE FROM THE NAVIGATION LINKS IN $pageController->displayAction();
 if ( isset( $_GET['page'] ) && !empty( $_GET['page'] ) )
 {
     $selectedPage = $_GET['page'];
@@ -64,7 +64,10 @@ if ( isset( $_GET['page'] ) && !empty( $_GET['page'] ) )
 //$contentAreaController->displayContentAreaEditPage(1);
 
 //DISAPLAYS THE ARTICLE EDIT PAGE
-$contentAreaController->displayArticleEditPage();
+//$contentAreaController->displayArticleEditPage();
+
+//DISPLAYS THE PAGE EDIT PAGE
+$pageController->displayEditPage();
 
 //require_once("../Controller/userController.php");
 //$userTest = new user();

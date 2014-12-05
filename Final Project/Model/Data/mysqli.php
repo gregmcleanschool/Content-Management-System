@@ -34,6 +34,8 @@ class Sqli
 
 
 
+
+
     //INSERT A NEW ARTICLES
     public function insertArticle($name,$title,$desc,$content,$CreatedBy,$pageId,$CAID,$allPages,$LastModifyBy)
     {
@@ -98,6 +100,79 @@ VALUES ('$name','$title','$desc','$content',NOW(),'$CreatedBy','$pageId','$CAID'
                 ,CSSDescription = '$desc'
                 ,LastModifyBy = '$updatedBy'
                 Where CSSID ='$id';";
+
+        $this->result = mysqli_query($db,$query);
+
+        $ret="";
+
+
+        $con->disconnect();
+
+        return  $ret;
+
+    }
+
+
+    public function deletePage($id)
+    {
+        $con = new Connect();
+        $db = $con->connect();
+
+
+
+        $query ="DELETE FROM Pages
+                  WHERE PagesID = '$id';";
+
+        $this->result = mysqli_query($db,$query);
+
+        $ret="";
+
+
+        $con->disconnect();
+
+        return  $ret;
+    }
+
+
+    public function insertPage($name,$alias,$desc,$createdBy){
+
+
+        $con = new Connect();
+        $db = $con->connect();
+
+        $query="INSERT INTO Pages(PageName,pageAlias,Description,creationDate,CreatedBy,LastModifyDate,LastModifyBy)
+                VALUES ('$name'
+                ,'$alias'
+                ,'$desc'
+                ,NOW()
+                ,'$createdBy'
+                ,NOW()
+                ,'$createdBy');";
+
+        $this->result = mysqli_query($db,$query);
+
+        $ret="";
+
+
+        $con->disconnect();
+
+        return  $ret;
+
+    }
+
+
+    public function updatePage($id,$name,$alias,$desc,$lastModifyBy){
+
+        $con = new Connect();
+        $db = $con->connect();
+
+        $query="UPDATE Pages
+                SET PageName = '$name'
+                ,PageAlias = '$alias'
+                ,Description = '$desc'
+                ,LastModifyBy = '$lastModifyBy'
+                ,LastModifyDate = NOW()
+                WHERE PagesID = '$id';";
 
         $this->result = mysqli_query($db,$query);
 
@@ -197,6 +272,29 @@ VALUES ('$name','$title','$desc','$content',NOW(),'$CreatedBy','$pageId','$CAID'
     }
 
 
+
+    //DELETE AN ARTICLE
+    public function deleteArticle($id){
+
+        $con = new Connect();
+        $db = $con->connect();
+
+
+
+        $query ="DELETE FROM Articles
+                  WHERE ArticleID = '$id';";
+
+        $this->result = mysqli_query($db,$query);
+
+        $ret="";
+
+
+        $con->disconnect();
+
+        return  $ret;
+
+
+    }
 
 
 //insert CSS content settings
@@ -612,6 +710,12 @@ VALUES ('$name','$title','$desc','$content',NOW(),'$CreatedBy','$pageId','$CAID'
     public function fetchPageName($row)
     {
         return $row['PageName'];
+    }
+
+    public function fetchPageDescription($row)
+    {
+     return $row['Description'];
+
     }
 
     public function fetchPageID($row)
