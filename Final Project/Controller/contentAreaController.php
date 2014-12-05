@@ -15,7 +15,7 @@ Class ContentArea{
 
     }
 
-
+    //DISPLAYS THE CONTENT AREA AND THE PAGES ON THEM
     public function displayAction($pageAlias)
     {
 
@@ -59,6 +59,13 @@ Class ContentArea{
 
     }
 
+
+    public function deleteContentArea($id)
+    {
+
+        $this->model->deleteContentArea($id);
+
+    }
 
 
 }

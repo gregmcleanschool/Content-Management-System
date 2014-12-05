@@ -6,7 +6,7 @@
  * Time: 2:47 AM
  */
 require_once("../Model/Data/mysqli.php");
-
+//ALSO CONTAINS MODEL FOR ARTICLES
 class contentAreaModel{
 
     private $contentAlias;
@@ -112,6 +112,18 @@ class contentAreaModel{
         $myDataAccess = new Sqli();
 
         $result = $myDataAccess->addContentArea($name,$desc,$order,$createdBy,$alias);
+
+        return $result;
+
+    }
+
+
+    public function deleteContentArea($id)
+    {
+
+        $myDataAccess = new Sqli();
+
+        $result = $myDataAccess->deleteContentArea($id);
 
         return $result;
 

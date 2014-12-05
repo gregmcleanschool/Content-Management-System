@@ -46,6 +46,19 @@ endforeach;?>
 //
 //}
 
+//WHEN DELETE BUTTON IS PRESSED
+if(isset($_POST['btnDelete']))
+{
+    $id  = $_POST['hiddenId'];
+
+    $contentAreaController->deleteContentArea($id);
+
+    echo "Delete Successful";
+
+}
+
+
+
 //WHEN UPDATE BUTTON IS PRESSED
 if(isset($_POST['btnUpdate']))
 {
@@ -62,7 +75,7 @@ if(isset($_POST['btnUpdate']))
     echo "Update Successful";
 
 }
-
+//WHEN CREATE NEW IS PRESSED
 if(isset($_POST['btnNewCA']))
 {
     //SET CURRENT USER HERE
@@ -82,7 +95,7 @@ if(isset($_POST['btnNewCA']))
 
 
 
-
+//WHEN USER SELECTS A CONTENT AREA
 if(isset($_POST['selectCA']))
 {
     $slectedID = $_POST['formCaSelect'];

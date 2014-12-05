@@ -139,6 +139,30 @@ class Sqli
     }
 
 
+//DELETE A CONTENT AREA
+    public function deleteContentArea($id){
+
+        $con = new Connect();
+        $db = $con->connect();
+
+
+
+        $query ="DELETE FROM ContentArea
+                  WHERE ContentAreaID = '$id';";
+
+        $this->result = mysqli_query($db,$query);
+
+        $ret="";
+
+
+        $con->disconnect();
+
+        return  $ret;
+
+
+    }
+
+
 
 
 //insert CSS content settings
@@ -187,26 +211,6 @@ class Sqli
 
 
 
-    public function deleteContentArea($CSSId)
-    {
-
-        $con = new Connect();
-        $db = $con->connect();
-
-
-
-        $query ="delete from CSSTemplate Where CSSID = '$CSSId';";
-
-        $this->result = mysqli_query($db,$query);
-
-
-
-        $con->disconnect();
-
-        return  $this->result;
-
-
-    }
 
 
 

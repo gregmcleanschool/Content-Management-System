@@ -2,7 +2,7 @@
 
 <?php
 echo "<section>";
-
+//LOOPS THROUGH EACH CONTENT AREA
 foreach ($areaArray as $area)
 {
 // all of our content areas are DIVs
@@ -12,7 +12,7 @@ foreach ($areaArray as $area)
  //   echo $contentID . '<br>';
 
     echo "<div id='$contentArea'>";
-
+//LOOPS THROUGH EACH ARTICLE
     foreach ( $articleArray as $article)
     {
 
@@ -20,7 +20,7 @@ foreach ($areaArray as $area)
         $name = $article->getarticleName();
         $articleContentID = $article->getarticleContentID(); //
         $content = $article->getarticleContent();
-
+//CHECKS FOR ARTICLES WITH A MATCHING ARTICLECONTENT ID
         if($articleContentID == $contentID)
         {
 
