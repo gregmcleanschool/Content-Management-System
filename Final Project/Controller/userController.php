@@ -16,6 +16,17 @@ class user
         return $allUserInfo;
     }
 
+    public function registerUser($checkUsername,$checkPassword, $firstName, $lastName, $createdBy)
+    {
+        $um = new userModel();
+        $um->register($checkUsername,$checkPassword, $firstName, $lastName, $createdBy);
+    }
+
+    public function loginUser($checkUsername,$checkPassword)
+    {
+        $um = new userModel();
+        $um->checkLogin($checkUsername,$checkPassword);
+    }
 
 
 }

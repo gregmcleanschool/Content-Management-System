@@ -71,9 +71,9 @@ $contentAreaController->displayContentAreaEditPage(1);
 //echo "";
 
 
-//$um = new userModel();
+$um = new userModel();
 
-//$um->register('testRegister', 'password', 'test', 'name', 1); //test, delete after.
+$um->register('testRegister', 'password', 'test', 'name', 1); //test, delete after.
 
 
 
