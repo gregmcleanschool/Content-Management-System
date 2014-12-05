@@ -47,17 +47,19 @@ class userModel
         return $arrayOfUserObjects;
     }
 
+
+
     //****************REGISTER A USER
-    public function register($checkUsername,$checkPassword)
+    public function register($checkUsername,$checkPassword, $firstName, $lastName, $createdBy)
     {
         $myPassword = $checkPassword;
         $myUsername = $checkUsername;
 
         //strip slashes are taking away the slashes, quotes, etc anything that is not a registered character
-        $myUsername = stripslashes($myUsername);
-        $myPassword = stripslashes($myPassword);
-        $myUsername = mysql_real_escape_string($myUsername);
-        $myPassword = mysql_real_escape_string($myPassword);
+//        $myUsername = stripslashes($myUsername);
+//        $myPassword = stripslashes($myPassword);
+//        $myUsername = mysql_real_escape_string($myUsername);
+//        $myPassword = mysql_real_escape_string($myPassword);
 
         //create a random salt
         $length = 60; //length of salt
@@ -74,20 +76,27 @@ class userModel
             $myPassword = hash('sha512',$myPassword.$salt);
             //$myPassword = hash('sha512',$myPassword.$myUsername);
         }
+
+        $dbCon = new Sqli();
+        $dbCon->insertUser($myUsername, $myPassword, $salt, $firstName, $lastName, $createdBy);
+
     }
 
 
 
-//***************CHECKS THE PASSWORD ON THE USER NAME ON LOGIN
-    public function checkLogin($checkUsername,$checkPassword, $salt)
+    //***************CHECKS THE PASSWORD ON THE USER NAME ON LOGIN
+    public function checkLogin($checkUsername,$checkPassword)
     {
+        $dbCon = new Sqli();
+
         $myPassword = $checkPassword;
         $myUsername = $checkUsername;
+        $salt = $dbCon->fetchUserSalt($dbCon->selectSingleUser($checkUsername));
 
-        $myUsername = stripslashes($myUsername);
-        $myPassword = stripslashes($myPassword);
-        $myUsername = mysql_real_escape_string($myUsername);
-        $myPassword = mysql_real_escape_string($myPassword);
+//        $myUsername = stripslashes($myUsername);
+//        $myPassword = stripslashes($myPassword);
+//        $myUsername = mysql_real_escape_string($myUsername);
+//        $myPassword = mysql_real_escape_string($myPassword);
 
         //have to pull out the correct salt
 
@@ -97,7 +106,17 @@ class userModel
             //$myPassword = hash('sha512',$myPassword.$myUsername);
         }
 
+        if($myPassword == $dbCon->fetchUserPassword($dbCon->selectSingleUser($checkUsername)))
+        {
+            return true;
+        }else
+        {
+            return false;
+        }
+
     }
+
+
 
 
 

@@ -29,6 +29,35 @@ Class ContentArea{
     }
 
 
+    //DISPLAYS THE EDIT PAGE
+    public function displayContentAreaEditPage($pageID){
+
+
+
+        $areaArray = $this->model->retrievePageContent($pageID);
+        $articleArray = $this->model->retrieveArticleContent($pageID);
+
+        include '../View/contentAreaEdit.php';
+
+    }
+
+    //UPDATES THE CONTENT AREA
+    public function updateContentArea($name,$desc,$order,$updatedBy,$id)
+    {
+
+
+        $this->model->updateContentArea($name,$desc,$order,$updatedBy,$id);
+
+
+    }
+
+    //ADDS A NEW CONTENT AREA
+    public function addContentArea($name,$desc,$order,$createdBy,$alias)
+    {
+
+        $this->model->addContentArea($name,$desc,$order,$createdBy,$alias);
+
+    }
 
 
 

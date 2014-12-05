@@ -9,6 +9,7 @@ $cssTemplate = 1;
 require_once '../Controller/cssController.php';
 require_once '../Controller/pageController.php';
 require_once'../Controller/contentAreaController.php';
+require_once '../Model/userModel.php';
 
 //$actorController = new Actor();
 $cssController = new CSS();
@@ -41,7 +42,8 @@ $contentAreaController = new ContentArea();
 
 $cssController->retrieveCSSTemplate($cssTemplate);
 
-$pageController->displayAction();
+//DISPLAYS THE PAGE NAVIGATION LINKS
+//$pageController->displayAction();
 
 
 
@@ -52,11 +54,14 @@ if ( isset( $_GET['page'] ) && !empty( $_GET['page'] ) )
 }
 
 
-//echo "<p>" .$selectedPage;
 
 
 
-$cssController->retrieveAllCSSInfo();
+//DISAPLYS THE CSS EDIT PAGE
+//$cssController->retrieveAllCSSInfo();
+
+//DISPLAYS THE CONTENT AREA EDIT PAGE
+$contentAreaController->displayContentAreaEditPage(1);
 
 //$actorController->displayAction("");
 
@@ -64,6 +69,13 @@ $cssController->retrieveAllCSSInfo();
 //$userTest = new user();
 //$userArray = $userTest->retrieveUserInfo();
 //echo "";
+
+
+$um = new userModel();
+
+$um->register('testRegister', 'password', 'test', 'name', 1); //test, delete after.
+
+
 
 
 ?>

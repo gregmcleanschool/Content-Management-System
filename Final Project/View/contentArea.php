@@ -1,3 +1,5 @@
+<!--DISAPLYS THE CONTENT AREA ON THE PAGE -->
+
 <?php
 echo "<section>";
 

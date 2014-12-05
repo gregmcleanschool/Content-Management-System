@@ -2,9 +2,6 @@
     NEEDS VALIDATION
  -->
 
-
-
-
 Select a CSS snippet add or update
 <form action="" method=post>
 <select name="formCSS">

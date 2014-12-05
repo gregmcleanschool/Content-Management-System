@@ -78,6 +78,69 @@ class Sqli
 
 
 
+    //ADDS NEW CONTENT AREA
+    public function addContentArea($name,$desc,$order,$createdBy,$alias)
+    {
+
+        $con = new Connect();
+        $db = $con->connect();
+
+
+
+        $query ="INSERT INTO ContentArea(Name,Alias,OrderOnPage,Description,CreateDate,UserID)
+                    VALUES ('$name'
+                    ,'$alias'
+                    ,'$order'
+                    ,'$desc'
+                    ,NOW()
+                    ,'$createdBy');";
+
+        $this->result = mysqli_query($db,$query);
+
+        $ret="";
+
+
+        $con->disconnect();
+
+        return  $ret;
+
+    }
+
+
+
+
+
+//UPDATES INFORMATION FROM CONTENT AREA
+    public function updateContentArea($name,$desc,$order,$updatedBy,$id){
+
+        $con = new Connect();
+        $db = $con->connect();
+
+
+
+        $query ="UPDATE ContentArea
+                    SET Name = '$name'
+                    ,Alias = 'head'
+                    ,OrderOnPage = '$order'
+                    ,Description = '$desc'
+                    ,LastModifyDate = NOW()
+                    ,LastModifyBy = '$updatedBy'
+                    WHERE ContentAreaID = '$id';";
+
+        $this->result = mysqli_query($db,$query);
+
+        $ret="";
+
+
+        $con->disconnect();
+
+        return  $ret;
+
+    }
+
+
+
+
 //insert CSS content settings
     public function insertCssContent($name,$desc,$snippet,$createdBy){
 
@@ -93,12 +156,6 @@ class Sqli
 
         $ret="";
 
-//        while($row = mysqli_fetch_row( $this->result))
-//        {
-//
-//            $ret = $row[0];
-//
-//        }
 
         $con->disconnect();
 
@@ -119,14 +176,7 @@ class Sqli
 
      $this->result = mysqli_query($db,$query);
 
-     $ret="";
 
-//     while($row = mysqli_fetch_row( $this->result))
-//     {
-//
-//         $ret = $row[0];
-//
-//     }
 
      $con->disconnect();
 
@@ -135,6 +185,28 @@ class Sqli
 
  }
 
+
+
+    public function deleteContentArea($CSSId)
+    {
+
+        $con = new Connect();
+        $db = $con->connect();
+
+
+
+        $query ="delete from CSSTemplate Where CSSID = '$CSSId';";
+
+        $this->result = mysqli_query($db,$query);
+
+
+
+        $con->disconnect();
+
+        return  $this->result;
+
+
+    }
 
 
 
@@ -181,6 +253,8 @@ class Sqli
         }
 
     }
+
+
 
 
     public function aliasPageTitleConvert($pageAlias)
@@ -292,7 +366,7 @@ class Sqli
 //                WHERE Articles.PagesID ='$pageID'";
 
 
-        $query = "SELECT *  FROM ContentArea";
+        $query = "SELECT *  FROM ContentArea ORDER BY OrderOnPage";
 
 
         $this->result = mysqli_query($db,$query);
@@ -397,6 +471,21 @@ class Sqli
         return $row['ContentAreaID'];
     }
 
+    public function fetchContentAreaName($row)
+    {
+        return $row['Name'];
+    }
+
+    public function fetchContentAreaDesc($row)
+    {
+        return $row['Description'];
+    }
+
+    public function fetchContentAreaOrder($row)
+    {
+        return $row['OrderOnPage'];
+    }
+
     public function fetchContentAreaAlias($row)
     {
         return $row['Alias'];
@@ -465,78 +554,58 @@ class Sqli
 
 
 
-    function searchActors($input){
+    function insertUser($userName, $userPassword, $passwordSalt, $firstName, $lastName, $createdBy)
+    {
+
 
         $con = new Connect();
         $db = $con->connect();
 
-        $query = "SELECT actor_id, first_name, last_name FROM actor WHERE first_name LIKE '%$input%' OR last_name LIKE '%$input%' LIMIT 10";
+        $query="INSERT INTO User (UserName, UserPassword, passwordSalt, firstName, lastName, creationDate, createdBy) VALUES ('$userName', '$userPassword', '$passwordSalt', '$firstName', '$lastName', NOW(), '$createdBy')";
+
+        $runQuery = mysqli_query($db, $query);
+
+        $con->disconnect();
+
+        return $runQuery;
+    }
+
+    function selectSingleUser($userName)
+    {
+        $con = new Connect();
+        $db = $con->connect();
+
+        $query ="SELECT * FROM User WHERE PagesID ='$userName'";
 
         $this->result = mysqli_query($db,$query);
 
         if(!$this->result)
         {
             die($$this->result->error .
-                'Could not retrieve records from the Sakila Database: ');
+                'Could not retrieve records from the CMS Database: ');
         }
 
+        return $this->result;
     }
 
-
-
-    function insertActor($fName, $lName)
+    function fetchUserSalt($row)
     {
-        $con = new Connect();
-        $db = $con->connect();
-
-        $query = "INSERT INTO actor (first_name, last_name) VALUES ('$fName','$lName')";
-
-        $runQuery = mysqli_query($db,$query);
-
-
-
-        $con->disconnect();
-
-        return $runQuery;
-
+        return $row['passwordSalt'];
     }
 
-
-    function updateActor($id,$fName,$lName)
+    function fetchUserPassword($row)
     {
-        $con = new Connect();
-        $db = $con->connect();
-
-
-        $query = "UPDATE actor SET first_name = '$fName', last_name = '$lName' WHERE actor_id = '$id'";
-
-        $runQuery = mysqli_query($db,$query);
-
-
-
-        $con->disconnect();
-
-        return $runQuery;
-
-
+        return $row['UserPassword'];
     }
 
-    function deleteActor($id)
-    {
 
-        $con = new Connect();
-        $db = $con->connect();
 
-        $query = "DELETE FROM actor WHERE actor_id = '$id'";
 
-        $runQuery = mysqli_query($db,$query);
 
-        $error = mysqli_error($db);
 
-        $con->disconnect();
 
-        return $runQuery;
-    }
+
+
 
 
 }//end class

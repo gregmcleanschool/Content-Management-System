@@ -15,6 +15,13 @@ class contentAreaModel{
     private $articleName;
     private $articleContentID;
     private $articleContent;
+    private $articleDescription;
+    private $articleOrder;
+
+    public function getArticleOrder()
+    {
+        return ($this->articleOrder);
+    }
 
 
     public function getContentID()
@@ -45,6 +52,11 @@ class contentAreaModel{
         return ($this->articleContent);
     }
 
+    public function getArticleDescription()
+    {
+        return ($this->articleDescription);
+    }
+
     public static function retrievePageContent($pageID)
     {
 
@@ -64,13 +76,12 @@ class contentAreaModel{
             $currentPage = new self();
             $currentPage ->contentAlias = $myDataAccess->fetchContentAreaAlias($row);
             $currentPage->contentID = $myDataAccess->fetchContentAreaID($row);
+            $currentPage->articleName = $myDataAccess->fetchContentAreaName($row);
+            $currentPage->articleDescription = $myDataAccess->fetchContentAreaDesc($row);
+            $currentPage->articleOrder= $myDataAccess->fetchContentAreaOrder($row);
 
             $arrayOfContentObjects[] = $currentPage;
         }
-
-
-
-
 
 
 //        $myDataAccess->closeDB();
@@ -84,6 +95,27 @@ class contentAreaModel{
 
     }
 
+    public function updateContentArea($name,$desc,$order,$updatedBy,$id)
+    {
+        $myDataAccess = new Sqli();
+
+        $result = $myDataAccess->updateContentArea($name,$desc,$order,$updatedBy,$id);
+
+        return $result;
+
+
+    }
+
+    public function addContentArea($name,$desc,$order,$createdBy,$alias)
+    {
+
+        $myDataAccess = new Sqli();
+
+        $result = $myDataAccess->addContentArea($name,$desc,$order,$createdBy,$alias);
+
+        return $result;
+
+    }
 
 
     public static function retrieveArticleContent($pageID)
@@ -119,6 +151,8 @@ class contentAreaModel{
     }
 
 
+
+
     public function convertAliasToPageID($alias)
     {
         $myDataAccess = new Sqli();
@@ -128,6 +162,9 @@ class contentAreaModel{
         return $result;
 
     }
+
+
+
 
 
 }
