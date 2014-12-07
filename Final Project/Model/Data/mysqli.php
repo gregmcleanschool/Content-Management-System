@@ -787,39 +787,140 @@ VALUES ('$name','$title','$desc','$content',NOW(),'$CreatedBy','$pageId','$CAID'
 
         $con->disconnect();
 
-        return $runQuery;
+//        return $runQuery;
     }
+
+    //DELETES ALL PRIVILEGES ASSOCIATED WITH A USER
+    function deletePrivileges($id){
+        $con = new Connect();
+        $db = $con->connect();
+
+        $query="DELETE FROM UserPrivilage
+                  WHERE UserID = '$id';";
+
+        $runQuery = mysqli_query($db, $query);
+
+        $con->disconnect();
+
+    }
+
+
+    function updateUser($userName, $userPassword, $passwordSalt, $firstName, $lastName, $createdBy,$id)
+    {
+
+
+        $con = new Connect();
+        $db = $con->connect();
+
+        $query="UPDATE User
+        SET UserName = '$userName',
+        UserPassword = '$userPassword',
+        passwordSalt = '$passwordSalt',
+        firstName='$firstName',
+        lastName='$lastName',
+        creationDate = NOW(),
+        createdBy='$createdBy'
+        WHERE UserID = '$id'";
+
+        $runQuery = mysqli_query($db, $query);
+
+        $con->disconnect();
+
+//        return $runQuery;
+    }
+
+    function insertUserPrivilege($userID,$privilege)
+    {
+
+        $con = new Connect();
+        $db = $con->connect();
+
+        $query ="INSERT INTO UserPrivilage
+                    VALUES('$userID','$privilege');";
+
+        $this->result = mysqli_query($db,$query);
+
+        if(!$this->result)
+        {
+            die($this->result->error .
+                'Could not retrieve records from the CMS Database: ');
+        }
+
+        return $this->result;
+
+    }
+
+    function selectUserPrivileges($userID){
+
+        $con = new Connect();
+        $db = $con->connect();
+
+        $query ="SELECT * FROM UserPrivilage WHERE UserID = '$userID';";
+
+        $this->result = mysqli_query($db,$query);
+
+        if(!$this->result)
+        {
+            die($this->result->error .
+                'Could not retrieve records from the CMS Database: ');
+        }
+
+        return $this->result;
+
+    }
+
+    function fetchUserPrivileges($row){
+
+     //   $row = mysqli_fetch_assoc($row);
+        return $row['PrivilageID'];
+
+    }
+
+
+
 
     function selectSingleUser($userName)
     {
         $con = new Connect();
         $db = $con->connect();
 
-        $query ="SELECT * FROM User WHERE PagesID ='$userName'";
+        $query ="SELECT * FROM User WHERE UserName ='$userName'";
 
         $this->result = mysqli_query($db,$query);
 
         if(!$this->result)
         {
-            die($$this->result->error .
+            die($this->result->error .
                 'Could not retrieve records from the CMS Database: ');
         }
+
+
 
         return $this->result;
     }
 
     function fetchUserSalt($row)
     {
+        $row = mysqli_fetch_assoc($row);
         return $row['passwordSalt'];
     }
 
     function fetchUserPassword($row)
     {
+        $row = mysqli_fetch_assoc($row);
         return $row['UserPassword'];
     }
 
+    function fetchUserFirstName($row)
+    {
 
+        return $row['firstName'];
+    }
 
+    function fetchUserLastName($row)
+    {
+        return $row['lastName'];
+    }
 
 
 

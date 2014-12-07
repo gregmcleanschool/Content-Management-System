@@ -1,4 +1,17 @@
 
+Select an article to edit or create a new one
+<form action="" method=post>
+    <select name="formArticleSelect">
+        <option value="">Select...</option>
+        <?php  foreach ($articleArray as $article):
+            ?>
+            <option value=<?php echo $article->getArticleArticleID() ?>><?php echo $article->getArticleArticleName(); ?></option>
+        <?php
+        endforeach;?>
+        <option value="N">Create New</option>
+    </select>
+    <input type=submit value="Select" name ="selectArticle">
+</form>
 
 
 <?php
@@ -13,9 +26,9 @@ $pageController = new Page;
 
 
 //WHEN DELETE IS PRESSED
-if(isset($_POST['btnDelete']))
+if(isset($_POST['btnDeleteArticle']))
 {
-    $id = $_POST['hiddenId'];
+    $id = $_POST['hiddenIdArticle'];
 
     $this->model->deleteArticle($id);
 
@@ -26,12 +39,12 @@ if(isset($_POST['btnDelete']))
 
 
 //WHEN UPDATE IS PRESSED
-if(isset($_POST['btnUpdate']))
+if(isset($_POST['btnUpdateArticle']))
 {
         //USER ID GOES HERE
     $user = 1;
 
-    $id = $_POST['hiddenId'];
+    $id = $_POST['hiddenIdArticle'];
     $name = $_POST['name'];
     $description = $_POST['description'];
     $title = $_POST['title'];
@@ -59,15 +72,15 @@ if(isset($_POST['btnUpdate']))
 
 
 
-if(isset($_POST['btnNew']))
+if(isset($_POST['btnNewArticle']))
 {
 
     //USER INFORMATON GOES HERE
     $CreatedBy = 1;
 
-    $name = $_POST['newName'];
-    $desc = $_POST['newDescription'];
-    $title = $_POST['newTitle'];
+    $name = $_POST['newNameArticle'];
+    $desc = $_POST['newDescriptionArticle'];
+    $title = $_POST['newTitleArticle'];
     $content = $_POST['newContent'];
 
     $pageId = $_POST['formPageNewSelect'];
@@ -112,14 +125,14 @@ if(isset($_POST['selectArticle']))
 
 
         <form action="" method=post>
-        Article Name: <input type="text" name="newName" ></p>
+        Article Name: <input type="text" name="newNameArticle" ></p>
                 Article Description:
 
-                <textarea rows="4" cols="50" name="newDescription"></textarea>
+                <textarea rows="4" cols="50" name="newDescriptionArticle"></textarea>
 
                 </p>
 
-                Title: <input type="text" name="newTitle" >
+                Title: <input type="text" name="newTitleArticle" >
 
                 </p>
 
@@ -162,7 +175,7 @@ if(isset($_POST['selectArticle']))
 
                 </p>
 
-                <input type=submit value="Create New" name ="btnNew">
+                <input type=submit value="Create New" name ="btnNewArticle">
             </form>
 
         <?php
@@ -241,9 +254,9 @@ if(isset($_POST['selectArticle']))
 
                 </p>
 
-                <input type=submit value="Update" name ="btnUpdate">
-                <input type=submit value="Delete" name ="btnDelete">
-                <input type ='hidden' value=<?php echo  $selectedID;?> name='hiddenId'>
+                <input type=submit value="Update" name ="btnUpdateArticle">
+                <input type=submit value="Delete" name ="btnDeleteArticle">
+                <input type ='hidden' value=<?php echo  $selectedID;?> name='hiddenIdArticle'>
             </form>
 
         <?php
@@ -263,22 +276,6 @@ if(isset($_POST['selectArticle']))
 
 
 ?>
-
-</p>
-
-Select an article to edit or create a new one
-<form action="" method=post>
-    <select name="formArticleSelect">
-        <option value="">Select...</option>
-        <?php  foreach ($articleArray as $article):
-    ?>
-    <option value=<?php echo $article->getArticleArticleID() ?>><?php echo $article->getArticleArticleName(); ?></option>
-<?php
-endforeach;?>
-<option value="N">Create New</option>
-</select>
-<input type=submit value="Select" name ="selectArticle">
-</form>
 
 
 

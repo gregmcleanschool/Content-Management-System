@@ -10,11 +10,20 @@ require_once '../Controller/cssController.php';
 require_once '../Controller/pageController.php';
 require_once'../Controller/contentAreaController.php';
 require_once '../Model/userModel.php';
+require_once("../Controller/userController.php");
+require_once("../Controller/siteController.php");
 
-//$actorController = new Actor();
 $cssController = new CSS();
 $pageController = new Page();
 $contentAreaController = new ContentArea();
+$userController = new user();
+$siteController = new  site();
+
+//check for user login
+session_start();
+if(! (isset($_SESSION["login_user"]))){
+    header("Location: ../View/login.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -40,46 +49,82 @@ $contentAreaController = new ContentArea();
 
 <?php
 
-$cssController->retrieveCSSTemplate($cssTemplate);
+
+
 
 //DISPLAYS THE PAGE NAVIGATION LINKS
-$pageController->displayAction();
+//$pageController->displayAction();
+
+//DISPLAYS LOGIN PAGE
+//$userController->displayUserAction();
+
+//DISAPLYS THE CSS EDIT PAGE
+//$cssController->retrieveAllCSSInfo();
+//
+////DISPLAYS THE CONTENT AREA EDIT PAGE
+//$contentAreaController->displayContentAreaEditPage(1);
+//
+////DISAPLAYS THE ARTICLE EDIT PAGE
+//$contentAreaController->displayArticleEditPage();
+//
+////DISPLAYS THE PAGE EDIT PAGE
+//$pageController->displayEditPage();
+
+//DISPLAYS THE USER EDIT PAGE
+//$userController->displayUserEditAction();
 
 
-//GETS THE SELETECTED PAGE FROM THE NAVIGATION LINKS IN $pageController->displayAction();
-if ( isset( $_GET['page'] ) && !empty( $_GET['page'] ) )
+//IF LOGGED IN AS AUTHOR
+if($_SESSION['user_author'] ==1)
 {
-    $selectedPage = $_GET['page'];
-    $contentAreaController->displayAction($selectedPage);
+    ?>
+    <h1>Author Front end Panel</h1>
+
+    <?php
+    $pageController->displayAction();
+    $contentAreaController->displayArticleEditPage();
+
+
+    //GETS THE SELETECTED PAGE FROM THE NAVIGATION LINKS IN $pageController->displayAction();
+    if ( isset( $_GET['page'] ) && !empty( $_GET['page'] ) )
+    {
+        $selectedPage = $_GET['page'];
+        $contentAreaController->displayAction($selectedPage);
+    }
+
+
+
+}
+
+//IF LOGGED IN AS ADMIN
+if($_SESSION["user_admin"] == 1)
+{
+    ?>
+    <h1>Admin Panel</h1>
+
+    <?php
+$userController->displayUserEditAction();
+}
+
+//IF LOGGED IN AS EDITOR
+if($_SESSION['user_editor'] ==1)
+{
+?>
+    <h1>Editor Panel</h1>
+
+    <?php
+    $pageController->displayEditPage();
+    echo '</p>';
+    $contentAreaController->displayArticleEditPage();
+    echo '</p>';
+    $contentAreaController->displayContentAreaEditPage(1);
+    echo '</p>';
+    $cssController->retrieveAllCSSInfo();
+
 }
 
 
 
-
-
-//DISAPLYS THE CSS EDIT PAGE
-//$cssController->retrieveAllCSSInfo();
-
-//DISPLAYS THE CONTENT AREA EDIT PAGE
-//$contentAreaController->displayContentAreaEditPage(1);
-
-//DISAPLAYS THE ARTICLE EDIT PAGE
-//$contentAreaController->displayArticleEditPage();
-
-//DISPLAYS THE PAGE EDIT PAGE
-$pageController->displayEditPage();
-
-//require_once("../Controller/userController.php");
-//$userTest = new user();
-//$userArray = $userTest->retrieveUserInfo();
-//echo "";
-
-
-$um = new userModel();
-
-$um->register('testRegister', 'password', 'test', 'name', 1); //test, delete after.
-
-
-
-
+//DISAPLY LOGOUT BUTTON
+$siteController->displayLogout();
 ?>

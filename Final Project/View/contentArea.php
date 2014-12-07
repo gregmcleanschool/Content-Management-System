@@ -16,8 +16,8 @@ foreach ($areaArray as $area)
     foreach ( $articleArray as $article)
     {
 
-
-        $name = $article->getarticleName();
+        $name = $article->getArticleArticleName();
+        $title = $article->getArticleArticleTitle();
         $articleContentID = $article->getarticleContentID(); //
         $content = $article->getarticleContent();
 //CHECKS FOR ARTICLES WITH A MATCHING ARTICLECONTENT ID
@@ -26,7 +26,7 @@ foreach ($areaArray as $area)
 
        echo "<article id='$name'>";
 
-        echo   $name . '<br>';
+        echo    $title . '</p>';
         echo   $content . '<br>';
 
 
