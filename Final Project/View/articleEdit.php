@@ -51,6 +51,7 @@ if(isset($_POST['btnUpdateArticle']))
     $content = $_POST['content'];
     $associatedContentArea = $_POST['formCASelect'];
     $associatedPage = $_POST['formPageSelect'];
+    $delete = false;
 
     //IF ALL PAGES IS SELECTED
     if($associatedPage == "P")
@@ -65,7 +66,7 @@ if(isset($_POST['btnUpdateArticle']))
     }
 
 
-    $this->model-> updateArticle($id, $associatedContentArea,$allPages,$name,$title, $description,$associatedPage,$user, $content);
+    $this->model-> updateArticle($id, $associatedContentArea,$allPages,$name,$title, $description,$associatedPage,$user, $content,$delete);
 
 
 }
@@ -91,7 +92,7 @@ if(isset($_POST['btnNewArticle']))
     if($pageId == "P")
     {
         $allPages =1;
-        $pageId=1;
+        $pageId=$_POST['hiddenIdArticleAllPagesId'];
 
     }
     else
@@ -198,6 +199,7 @@ if(isset($_POST['selectArticle']))
             $description = $article->getArticleArticleDescription();
             $title = $article->getArticleArticleTitle();
             $content = $article->getarticleContent();
+            $articleAssociatedPageId = $article->getArticleArticlePagesID();
 
             ?>
 
@@ -256,7 +258,9 @@ if(isset($_POST['selectArticle']))
 
                 <input type=submit value="Update" name ="btnUpdateArticle">
                 <input type=submit value="Delete" name ="btnDeleteArticle">
+              ;
                 <input type ='hidden' value=<?php echo  $selectedID;?> name='hiddenIdArticle'>
+                <input type ='hidden' value="<?php echo   $articleAssociatedPageId;?>" name='hiddenIdArticleAllPagesId'>
             </form>
 
         <?php

@@ -6,11 +6,28 @@ class Sqli
     private $result;
 
 #UPDATES ARETICLE
-    public function updateArticle($articleId,$contentAreaId,$allPages,$name,$title,$desc,$pageID,$modifiedBy,$content){
+    public function updateArticle($articleId,$contentAreaId,$allPages,$name,$title,$desc,$pageID,$modifiedBy,$content,$delete){
 
         $con = new Connect();
         $db = $con->connect();
 
+        //if delted from the front end
+        if($delete)
+        {
+            $query ="UPDATE Articles
+                    SET ArticleName = '$name'
+                    ,ArticleTitle = '$title'
+                    ,ArticleDescription = '$desc'
+                    ,Content = '$content'
+                    ,PagesID = '$pageID'
+                    ,ContentAreaID = null
+                    ,allPages = '$allPages'
+                    ,LastModifyDate = NOW()
+                    ,LastModifyBy = '$modifiedBy'
+                    WHERE ArticleID = '$articleId'; ";
+        }
+        else
+        {
         $query ="UPDATE Articles
                     SET ArticleName = '$name'
                     ,ArticleTitle = '$title'
@@ -22,6 +39,7 @@ class Sqli
                     ,LastModifyDate = NOW()
                     ,LastModifyBy = '$modifiedBy'
                     WHERE ArticleID = '$articleId'; ";
+        }
 
         $this->result = mysqli_query($db,$query);
 

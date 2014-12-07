@@ -89,9 +89,9 @@ Class ContentArea{
     }
 
     //UPDATES ARTICLE
-    public function updateArticle($articleId,$contentAreaId,$allPages,$name,$title,$desc,$pageID,$modifiedBy,$content)
+    public function updateArticle($articleId,$contentAreaId,$allPages,$name,$title,$desc,$pageID,$modifiedBy,$content,$delete)
     {
-        $this->model->updateArticle($articleId,$contentAreaId,$allPages,$name,$title,$desc,$pageID,$modifiedBy,$content);
+        $this->model->updateArticle($articleId,$contentAreaId,$allPages,$name,$title,$desc,$pageID,$modifiedBy,$content,$delete);
 
     }
 

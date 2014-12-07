@@ -164,11 +164,11 @@ class contentAreaModel{
 
     }
 
-public function updateArticle($articleId,$contentAreaId,$allPages,$name,$title,$desc,$pageID,$modifiedBy,$content)
+public function updateArticle($articleId,$contentAreaId,$allPages,$name,$title,$desc,$pageID,$modifiedBy,$content,$delete)
 {
     $myDataAccess = new Sqli();
 
-    $result = $myDataAccess->updateArticle($articleId,$contentAreaId,$allPages,$name,$title,$desc,$pageID,$modifiedBy,$content);
+    $result = $myDataAccess->updateArticle($articleId,$contentAreaId,$allPages,$name,$title,$desc,$pageID,$modifiedBy,$content,$delete);
 
     return $result;
 

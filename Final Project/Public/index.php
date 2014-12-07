@@ -82,7 +82,7 @@ if($_SESSION['user_author'] ==1)
 
     <?php
     $pageController->displayAction();
-    $contentAreaController->displayArticleEditPage();
+
 
 
     //GETS THE SELETECTED PAGE FROM THE NAVIGATION LINKS IN $pageController->displayAction();
