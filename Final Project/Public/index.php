@@ -22,7 +22,7 @@ $siteController = new  site();
 //check for user login
 session_start();
 if(! (isset($_SESSION["login_user"]))){
-    header("Location: ../View/login.php");
+    header("Location: indexFrontEnd.php");
 }
 ?>
 
@@ -81,7 +81,7 @@ if($_SESSION['user_author'] ==1)
     <h1>Author Front end Panel</h1>
 
     <?php
-    $pageController->displayAction();
+    $pageController->displayAction(false);
 
 
 
@@ -90,6 +90,7 @@ if($_SESSION['user_author'] ==1)
     {
         $selectedPage = $_GET['page'];
         $contentAreaController->displayAction($selectedPage);
+       // $contentAreaController->displayFrontEndAction($selectedPage);
     }
 
 
@@ -125,6 +126,9 @@ if($_SESSION['user_editor'] ==1)
 
 
 
+
+
 //DISAPLY LOGOUT BUTTON
 $siteController->displayLogout();
 ?>
+

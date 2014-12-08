@@ -19,11 +19,20 @@ Class Page{
     }
 
 
-    public function displayAction()
+    public function displayAction($forFrontEnd)
     {
+        if($forFrontEnd)
+        {
+            $pageArray = $this->model->retrieveAllPages();
+
+            include '../View/pageListFrontEnd.php';
+        }
+        else
+        {
         $pageArray = $this->model->retrieveAllPages();
 
         include '../View/pageList.php';
+        }
     }
 
 

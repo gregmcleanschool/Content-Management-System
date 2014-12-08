@@ -1,3 +1,4 @@
+<h2>Login</h2>
 <?php
 
 require_once("../Controller/userController.php");
@@ -91,6 +92,10 @@ if (isset($_POST['submit']))
             header("Location: ../Public/index.php");
 
         }
+        else{
+
+            echo "Login Failed";
+        }
 
     }
 
@@ -139,3 +144,4 @@ if (isset($_POST['submit']))
 //}
 
 ?>
+

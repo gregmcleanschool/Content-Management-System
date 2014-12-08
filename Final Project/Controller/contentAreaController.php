@@ -28,6 +28,18 @@ Class ContentArea{
         include '../View/contentArea.php';
     }
 
+    //DISPLAYS THE CONTENT AREA AND THE PAGES ON THEM
+    public function displayFrontEndAction($pageAlias)
+    {
+
+        $pageID = $this->model->convertAliasToPageID($pageAlias);
+
+        $areaArray = $this->model->retrievePageContent($pageID);
+        $articleArray = $this->model->retrieveArticleContent($pageID);
+
+
+        include '../View/contentAreaFrontEnd.php';
+    }
 
 
     public function deleteArticle($id)

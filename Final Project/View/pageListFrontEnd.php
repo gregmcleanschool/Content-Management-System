@@ -6,14 +6,14 @@
         {
 
 
-
-
                 $currentName = $page->getName();
                 $currentAlias = $page->getAlias();
 
 
+
+
                 echo "<li>";
-                echo "<a href=index.php?page=$currentAlias>$currentName</a>";
+                echo "<a href=indexFrontEnd.php?page=$currentAlias>$currentName</a>";
                 echo "</li>";
 
 
