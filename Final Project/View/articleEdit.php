@@ -208,6 +208,7 @@ if(isset($_POST['selectArticle']))
 
 
             <form action="" method=post>
+
                 Article Name: <input type="text" name="articleUpdateName" required="true" value="<?php echo $name; ?>"></p>
                 Article Description:
 

@@ -106,6 +106,7 @@ if(isset($_POST['selectCA']))
         //IF CREATE NEW IS SELECTED IN THE DROP DOWN
     ?>
         <form action="" method=post>
+
         Content Area Name: <input type="text" name="newName" required="true"></p>
              Content area Description:
 

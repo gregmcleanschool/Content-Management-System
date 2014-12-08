@@ -81,6 +81,7 @@ Select a page to edit or create a new one
         {
             ?>
             <form action="" method=post>
+
             Page Name: <input type="text" required="true" name="newName"></p>
                     Page Description:
 

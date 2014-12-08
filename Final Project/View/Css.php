@@ -58,6 +58,7 @@ if(isset($_POST['submit']) )
 
 
         <form action="" method=post>
+
             Template Name: <input type="text" required="true" name="newName"></p>
             Template Description:
 

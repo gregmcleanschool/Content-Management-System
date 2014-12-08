@@ -89,7 +89,7 @@ if(isset($_POST['btnEditUpdateArticle']))
     }
 
 
-    $this->model-> updateArticle($id, $associatedContentArea,$allPages,$name,$title, $description,$associatedPage,$user, $content);
+    $this->model-> updateArticle($id, $associatedContentArea,$allPages,$name,$title, $description,$associatedPage,$user, $content,false);
 
 
 }
@@ -170,6 +170,7 @@ if(isset($_POST['btnAuthorNewArticle']))
 ?>
 
 <form action="" method=post>
+
     Article Name: <input type="text" name="newAuthorName" required="true"></p>
 Article Description:
 

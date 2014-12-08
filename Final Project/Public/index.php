@@ -29,6 +29,12 @@ if(! (isset($_SESSION["login_user"]))){
 <!DOCTYPE html>
 <html>
 <head>
+    <script type="text/javascript" src="../js/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: "textarea"
+        });
+    </script>
     <?php
 
     $titlePage = 'Default Page';
