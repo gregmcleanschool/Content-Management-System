@@ -171,7 +171,7 @@ class userModel
 
 
 
-        $salt = $dbCon->fetchUserSalt($dbCon->selectSingleUser($checkUsername));
+        $salt = $dbCon->fetchUserSalt($dbCon->selectSingleUser($myUsername));
 
 
 
@@ -191,7 +191,7 @@ class userModel
             //$myPassword = hash('sha512',$myPassword.$myUsername);
         }
 
-        if($myPassword == $dbCon->fetchUserPassword($dbCon->selectSingleUser($checkUsername)))
+        if($myPassword == $dbCon->fetchUserPassword($dbCon->selectSingleUser($myUsername)))
         {
             return true;
         }else

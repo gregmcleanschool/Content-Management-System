@@ -21,12 +21,12 @@ endforeach;?>
 
 $cssController = new CSS();
 
-if(isset($_POST['btnDelete']))
+if(isset($_POST['btnDeleteCSS']))
 {
 
 
 
-    $id = $_POST['hiddenId'];
+    $id = $_POST['hiddenIdForCSS'];
 
     $result = $cssController->deleteCssTemplate($id);
 
@@ -38,7 +38,7 @@ if(isset($_POST['btnDelete']))
 if(isset($_POST['newName']))
 {
     //USER INFRO GOES HERE
-    $createdBy = 1;
+    $createdBy = $_SESSION['login_id'];
     $snippet = $_POST['newSnippet'];
     $name = $_POST['newName'];
     $desc = $_POST['newDescription'];
@@ -112,9 +112,9 @@ if(isset($_POST['submit']) )
 
               </p>
 
-              <input type=submit value="Update" name ="btnUpdate">
-                <input type=submit value="Delete" name ="btnDelete">
-              <input type ='hidden' value=<?php echo  $selectedID?> name='hiddenId'>
+              <input type=submit value="Update" name ="btnUpdateCSS">
+                <input type=submit value="Delete" name ="btnDeleteCSS">
+              <input type ='hidden' value=<?php echo  $selectedID?> name='hiddenIdForCSS'>
               </form>
 
               <?php
@@ -126,13 +126,13 @@ if(isset($_POST['submit']) )
 }
 
 
-if(isset($_POST['btnUpdate']))
+if(isset($_POST['btnUpdateCSS']))
 {
     //VALUE OF CURRENT USER GOES HERE
-    $updatedBy = 1;
+    $updatedBy = $_SESSION['login_id'];
 
 
-    $id = $_POST['hiddenId'];
+    $id = $_POST['hiddenIdForCSS'];
     $snippet = $_POST['snippet'];
     $name = $_POST['name'];
     $desc = $_POST['description'];

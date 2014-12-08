@@ -1,4 +1,6 @@
 
+
+
 Select an article to edit or create a new one
 <form action="" method=post>
     <select name="formArticleSelect">
@@ -42,15 +44,15 @@ if(isset($_POST['btnDeleteArticle']))
 if(isset($_POST['btnUpdateArticle']))
 {
         //USER ID GOES HERE
-    $user = 1;
+    $user = $_SESSION['login_id'];
 
     $id = $_POST['hiddenIdArticle'];
-    $name = $_POST['name'];
-    $description = $_POST['description'];
-    $title = $_POST['title'];
-    $content = $_POST['content'];
-    $associatedContentArea = $_POST['formCASelect'];
-    $associatedPage = $_POST['formPageSelect'];
+    $name = $_POST['articleUpdateName'];
+    $description = $_POST['articleUpdateDescription'];
+    $title = $_POST['articleUpdateTitle'];
+    $content = $_POST['articleUpdatecontent'];
+    $associatedContentArea = $_POST['formUpdateCASelect'];
+    $associatedPage = $_POST['formUpdatePageSelect'];
     $delete = false;
 
     //IF ALL PAGES IS SELECTED
@@ -77,7 +79,7 @@ if(isset($_POST['btnNewArticle']))
 {
 
     //USER INFORMATON GOES HERE
-    $CreatedBy = 1;
+    $CreatedBy = $_SESSION['login_id'];
 
     $name = $_POST['newNameArticle'];
     $desc = $_POST['newDescriptionArticle'];
@@ -206,19 +208,19 @@ if(isset($_POST['selectArticle']))
 
 
             <form action="" method=post>
-                Article Name: <input type="text" name="name" value=<?php echo $name; ?>></p>
+                Article Name: <input type="text" name="articleUpdateName" value="<?php echo $name; ?>"></p>
                 Article Description:
 
-                <textarea rows="4" cols="50" name="description"><?php  echo   $description;?></textarea>
+                <textarea rows="4" cols="50" name="articleUpdateDescription"><?php  echo   $description;?></textarea>
 
                 </p>
 
-                Title: <input type="text" name="title" value=<?php echo  $title; ?>>
+                Title: <input type="text" name="articleUpdateTitle" value="<?php echo  $title; ?>">
 
                 </p>
 
 
-                Content:<textarea rows="4" cols="50" name="content"><?php  echo    $content;?></textarea>
+                Content:<textarea rows="4" cols="50" name="articleUpdatecontent"><?php  echo    $content;?></textarea>
 
                 </p>
 
@@ -229,7 +231,7 @@ if(isset($_POST['selectArticle']))
 
                     ?>
 
-                        <select name="formPageSelect">
+                        <select name="formUpdatePageSelect">
                             <option value="">Select...</option>
                             <?php  foreach ($pageObjects as $page):
                                         ?>
@@ -243,7 +245,7 @@ if(isset($_POST['selectArticle']))
 
                 Associated Content Area
 
-                    <select name="formCASelect">
+                    <select name="formUpdateCASelect">
                         <option value="">Select...</option>
                         <?php foreach($areaArray as $area):
                             ?>
@@ -258,7 +260,7 @@ if(isset($_POST['selectArticle']))
 
                 <input type=submit value="Update" name ="btnUpdateArticle">
                 <input type=submit value="Delete" name ="btnDeleteArticle">
-              ;
+
                 <input type ='hidden' value=<?php echo  $selectedID;?> name='hiddenIdArticle'>
                 <input type ='hidden' value="<?php echo   $articleAssociatedPageId;?>" name='hiddenIdArticleAllPagesId'>
             </form>

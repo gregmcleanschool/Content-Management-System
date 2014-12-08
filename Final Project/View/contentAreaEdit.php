@@ -47,7 +47,7 @@ endforeach;?>
 //}
 
 //WHEN DELETE BUTTON IS PRESSED
-if(isset($_POST['btnDelete']))
+if(isset($_POST['btnDeleteContentArea']))
 {
     $id  = $_POST['hiddenId'];
 
@@ -60,10 +60,10 @@ if(isset($_POST['btnDelete']))
 
 
 //WHEN UPDATE BUTTON IS PRESSED
-if(isset($_POST['btnUpdate']))
+if(isset($_POST['btnUpdateContentArea']))
 {
     //SET CURRENT USER HERE
-    $user = 1;
+    $user = $_SESSION['login_id'];
 
     $id  = $_POST['hiddenId'];
     $name = $_POST['name'];
@@ -76,10 +76,10 @@ if(isset($_POST['btnUpdate']))
 
 }
 //WHEN CREATE NEW IS PRESSED
-if(isset($_POST['btnNewCA']))
+if(isset($_POST['btnNewCACreate']))
 {
     //SET CURRENT USER HERE
-    $user = 1;
+    $user = $_SESSION['login_id'];
 
 
     $name = $_POST['newName'];
@@ -120,7 +120,7 @@ if(isset($_POST['selectCA']))
 
               </p>
 
-              <input type=submit value="Create New" name ="btnNewCA">
+              <input type=submit value="Create New" name ="btnNewCACreate">
 
 
               </form>
@@ -165,8 +165,8 @@ if(isset($_POST['selectCA']))
 
               </p>
 
-              <input type=submit value="Update" name ="btnUpdate">
-                <input type=submit value="Delete" name ="btnDelete">
+              <input type=submit value="Update" name ="btnUpdateContentArea">
+                <input type=submit value="Delete" name ="btnDeleteContentArea">
               <input type ='hidden' value=<?php echo  $slectedID;?> name='hiddenId'>
               </form>
 

@@ -5,7 +5,7 @@
 <?php
 
 //WHEN DELETE IS PRESSED
-if(isset($_POST['btnDelete']))
+if(isset($_POST['btnDeletePageEdit']))
 {
     $id = $_POST['hiddenId'];
 
@@ -18,10 +18,10 @@ echo "Delete Success" . "</p>";
 
 
 //WHEN CREATE NEW BUTTON IS PRESSED
-if(isset($_POST['btnNew']))
+if(isset($_POST['btnNewPageEdit']))
 {
   //CURRENT USER ID GOES HERE
-    $createdBy = 1;
+    $createdBy = $_SESSION['login_id'];
 
     $name = $_POST['newName'];
     $desc = $_POST['newDescription'];
@@ -34,12 +34,12 @@ if(isset($_POST['btnNew']))
 }
 
 
-if(isset($_POST['btnUpdate']))
+if(isset($_POST['btnUpdatePageEdit']))
 {
 //WHEN UPDATE IS PRESSED
 
 //CURRENT USER GOES HERE
-$lastModifyBy = 1;
+$lastModifyBy = $_SESSION['login_id'];
 
 $id = $_POST['hiddenId'];
 $name = $_POST['name'];
@@ -92,7 +92,7 @@ Select a page to edit or create a new one
 
                     </p>
 
-                    <input type=submit value="Create New" name ="btnNew">
+                    <input type=submit value="Create New" name ="btnNewPageEdit">
                 </form>
 
             <?php
@@ -118,8 +118,8 @@ Select a page to edit or create a new one
 
                     </p>
 
-                    <input type=submit value="Update" name ="btnUpdate">
-                    <input type=submit value="Delete" name ="btnDelete">
+                    <input type=submit value="Update" name ="btnUpdatePageEdit">
+                    <input type=submit value="Delete" name ="btnDeletePageEdit">
                     <input type ='hidden' value=<?php echo  $selectedID?> name='hiddenId'>
                 </form>
 
