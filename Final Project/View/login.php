@@ -11,8 +11,8 @@ require_once("../Controller/userController.php");
         <body>
             <form id="form1" name="form1" method="post" action="">
                 <p>
-                    <label>User Name: <input type="text" name="username" id="username" /></label>
-                    <label>Password: <input type="text" name="password" /></label>
+                    <label>User Name: <input type="text" name="username" id="username" required="true"/></label>
+                    <label>Password: <input type="password" name="password" required="true"/></label>
                     <input type="submit" name="submit" id="submit" value="Submit" />
                     </p>
                 </form>

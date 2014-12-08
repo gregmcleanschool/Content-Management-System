@@ -128,19 +128,19 @@ if(isset($_POST['selectArticle']))
 
 
         <form action="" method=post>
-        Article Name: <input type="text" name="newNameArticle" ></p>
+        Article Name: <input type="text" name="newNameArticle" required="true"></p>
                 Article Description:
 
                 <textarea rows="4" cols="50" name="newDescriptionArticle"></textarea>
 
                 </p>
 
-                Title: <input type="text" name="newTitleArticle" >
+                Title: <input type="text" name="newTitleArticle" required="true">
 
                 </p>
 
 
-                Content:<textarea rows="4" cols="50" name="newContent"></textarea>
+                Content:<textarea rows="4" cols="50" name="newContent" required="true"></textarea>
 
                 </p>
 
@@ -208,19 +208,19 @@ if(isset($_POST['selectArticle']))
 
 
             <form action="" method=post>
-                Article Name: <input type="text" name="articleUpdateName" value="<?php echo $name; ?>"></p>
+                Article Name: <input type="text" name="articleUpdateName" required="true" value="<?php echo $name; ?>"></p>
                 Article Description:
 
                 <textarea rows="4" cols="50" name="articleUpdateDescription"><?php  echo   $description;?></textarea>
 
                 </p>
 
-                Title: <input type="text" name="articleUpdateTitle" value="<?php echo  $title; ?>">
+                Title: <input type="text" required="true" name="articleUpdateTitle" value="<?php echo  $title; ?>">
 
                 </p>
 
 
-                Content:<textarea rows="4" cols="50" name="articleUpdatecontent"><?php  echo    $content;?></textarea>
+                Content:<textarea rows="4" cols="50" required="true" name="articleUpdatecontent"><?php  echo    $content;?></textarea>
 
                 </p>
 

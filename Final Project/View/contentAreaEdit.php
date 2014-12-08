@@ -106,14 +106,14 @@ if(isset($_POST['selectCA']))
         //IF CREATE NEW IS SELECTED IN THE DROP DOWN
     ?>
         <form action="" method=post>
-        Content Area Name: <input type="text" name="newName" ></p>
+        Content Area Name: <input type="text" name="newName" required="true"></p>
              Content area Description:
 
               <textarea rows="4" cols="50" name="newDescription"></textarea>
 
               </p>
 
-              Order on Page: <input type="text" name="newOrder" >
+              Order on Page: <input type="text" name="newOrder" required="true">
 
               </p>
 
@@ -151,14 +151,14 @@ if(isset($_POST['selectCA']))
 
 
     <form action="" method=post>
-    Content Area Name: <input type="text" name="name" value=<?php echo $name; ?>></p>
+    Content Area Name: <input type="text" name="name" required="true" value=<?php echo $name; ?>></p>
              Content area Description:
 
               <textarea rows="4" cols="50" name="description"><?php  echo  $desc;?></textarea>
 
               </p>
 
-              Order on Page: <input type="text" name="order" value=<?php echo  $order; ?>>
+              Order on Page: <input type="text" required="true" name="order" value=<?php echo  $order; ?>>
 
               </p>
 

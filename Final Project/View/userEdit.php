@@ -32,13 +32,13 @@ if(isset($_POST['btnUserEditSubmit']))
     ?>
         </p>
   <form action="" method=post>
-    UserName: <input type="text" name="NewUserName">
+    UserName: <input type="text" name="NewUserName" required="true">
     </p>
-    Password: <input type="text" name="NewUserPass" >
+    Password: <input type="text" name="NewUserPass" required="true" >
     </p>
-    First Name: <input type="text" name="NewFirstName">
+    First Name: <input type="text" name="NewFirstName" required="true">
     </p>
-    Last Name: <input type="text" name="NewLastName">
+    Last Name: <input type="text" name="NewLastName" required="true">
 
     <input type ='submit' name ='btnUserCreate' value ="Create">
    </form>
@@ -56,13 +56,13 @@ if(isset($_POST['btnUserEditSubmit']))
 ?>
 <form action="" method=post>
     </p>
-    UserName: <input type="text" name="UserName" value=<?php echo  $user->getUserName(); ?>>
+    UserName: <input required="true" type="text" name="UserName" value=<?php echo  $user->getUserName(); ?>>
     </p>
-    Password: <input type="text" name="UserPass" >
+    Password: <input required="true" type="text" name="UserPass" >
     </p>
-    First Name: <input type="text" name="FirstName" value=<?php echo $user->getUserLastName(); ?>>
+    First Name: <input required="true" type="text" name="FirstName" value=<?php echo $user->getUserLastName(); ?>>
     </p>
-    Last Name: <input type="text" name="LastName" value=<?php echo  $user->getUserFirstName(); ?>>
+    Last Name: <input required="true" type="text" name="LastName" value=<?php echo  $user->getUserFirstName(); ?>>
     </p>
     <input type ='hidden' name ='hiddenUserId' value =<?php echo $selectedUserID;?>>
         <!-- GENERATE CHECKBOXES -->

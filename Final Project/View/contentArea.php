@@ -170,19 +170,19 @@ if(isset($_POST['btnAuthorNewArticle']))
 ?>
 
 <form action="" method=post>
-    Article Name: <input type="text" name="newAuthorName" ></p>
+    Article Name: <input type="text" name="newAuthorName" required="true"></p>
 Article Description:
 
                 <textarea rows="4" cols="50" name="newAuthorDescription"></textarea>
 
     </p>
 
-    Title: <input type="text" name="newAuthorTitle" >
+    Title: <input type="text" name="newAuthorTitle" required="true">
 
     </p>
 
 
-    Content:<textarea rows="4" cols="50" name="newAuthorContent"></textarea>
+    Content:<textarea rows="4" cols="50" name="newAuthorContent" required="true"></textarea>
 
     </p>
 
@@ -264,19 +264,19 @@ if(isset($_POST['btnEditArticle']))
 
 
             <form action="" method=post>
-                Article Name: <input type="text" name="editName" value="<?php echo $name; ?>"></p>
+                Article Name: <input type="text" name="editName" required="true" value="<?php echo $name; ?>"></p>
                 Article Description:
 
                 <textarea rows="4" cols="50" name="editDescription"><?php  echo   $description;?></textarea>
 
                 </p>
 
-                Title: <input type="text" name="editTitle" value="<?php echo  $title; ?>">
+                Title: <input type="text" name="editTitle" required="true" value="<?php echo  $title; ?>">
 
                 </p>
 
 
-                Content:<textarea rows="4" cols="50" name="editContent"><?php  echo    $content;?></textarea>
+                Content:<textarea rows="4" cols="50" name="editContent" required="true"><?php  echo    $content;?></textarea>
 
                 </p>
 

@@ -58,7 +58,7 @@ if(isset($_POST['submit']) )
 
 
         <form action="" method=post>
-            Template Name: <input type="text" name="newName"></p>
+            Template Name: <input type="text" required="true" name="newName"></p>
             Template Description:
 
             <textarea rows="4" cols="50" name="newDescription"></textarea>
@@ -67,7 +67,7 @@ if(isset($_POST['submit']) )
 
             CSS Snippet:
 
-            <textarea rows="4" cols="50" name="newSnippet"></textarea>
+            <textarea rows="4" cols="50" required="true" name="newSnippet"></textarea>
 
             </p>
 
@@ -96,7 +96,7 @@ if(isset($_POST['submit']) )
             ?>
 
             <form action="" method=post>
-             Template Name: <input type="text" name="name" value=<?php echo $Css->getCSSName(); ?>></p>
+             Template Name: <input type="text" required="true" name="name" value=<?php echo $Css->getCSSName(); ?>></p>
              Template Description:
 
               <textarea rows="4" cols="50" name="description"><?php  echo $Css->getCSSDescription();?></textarea>
@@ -105,7 +105,7 @@ if(isset($_POST['submit']) )
 
               CSS Snippet:
 
-              <textarea rows="4" cols="50" name="snippet"><?php  echo $Css->getCSSSnippet();?></textarea>
+              <textarea rows="4" cols="50" required="true" name="snippet"><?php  echo $Css->getCSSSnippet();?></textarea>
 
               </p>
               Currently active? </br> <?php echo  $isActive?>

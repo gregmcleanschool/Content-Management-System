@@ -81,18 +81,18 @@ Select a page to edit or create a new one
         {
             ?>
             <form action="" method=post>
-            Page Name: <input type="text" name="newName"></p>
+            Page Name: <input type="text" required="true" name="newName"></p>
                     Page Description:
 
-                    <textarea rows="4" cols="50" name="newDescription"></textarea>
+                    <textarea rows="4" cols="50"  name="newDescription"></textarea>
 
                     </p>
 
-                    Page Alias: <input type="text" name="newAlias"></p>
+                    Page Alias: <input type="text" required="true" name="newAlias"></p>
 
                     </p>
 
-                    <input type=submit value="Create New" name ="btnNewPageEdit">
+                    <input type=submit value="Create New" required="true" name ="btnNewPageEdit">
                 </form>
 
             <?php
@@ -107,14 +107,14 @@ Select a page to edit or create a new one
                 ?>
 
                 <form action="" method=post>
-                    Page Name: <input type="text" name="name" value=<?php echo $page->getName(); ?>></p>
+                    Page Name: <input type="text" name="name" required="true" value=<?php echo $page->getName(); ?>></p>
                     Page Description:
 
-                    <textarea rows="4" cols="50" name="description"><?php  echo $page->getPageDescription();?></textarea>
+                    <textarea rows="4" cols="50"  name="description"><?php  echo $page->getPageDescription();?></textarea>
 
                     </p>
 
-                    Page Alias: <input type="text" name="alias" value=<?php echo $page->getAlias(); ?>></p>
+                    Page Alias: <input type="text" required="true" name="alias" value=<?php echo $page->getAlias(); ?>></p>
 
                     </p>
 
